@@ -21,6 +21,7 @@ class MetroNode:SKShapeNode {
     var stationName: String
     var metroLine:String
     var location:CGPoint
+    var adjacentNodes = [MetroNode]()
     init(withName name:String, inLine line:String, center:CGPoint) {
 
         self.stationName = name
@@ -37,7 +38,6 @@ class MetroNode:SKShapeNode {
         self.lineWidth = 1
         self.glowWidth = 0.5
         self.fillColor = .red
-        self.zPosition = 1000
     }
     init(fromFile filename:String) {
         //TODO: init node from node file

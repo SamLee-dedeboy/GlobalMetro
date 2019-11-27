@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
 class MetroMap {
     var lines: [MetroLine]
-    
+    //var selectedLine: MetroLine?
+    var selectedLine = MetroLine("2", UIColor.red)
     init() {
         lines = [MetroLine]()
     }
@@ -18,6 +21,13 @@ class MetroMap {
         lines = [MetroLine]()
     }
     func addNewNode(inLine line:MetroLine, naming name: String) {
+        
+    }
+    func addNewLine(lineName: String, color: UIColor) {
+        
+    }
+    func getNodeByName(_ name:String) -> MetroNode? {
+        return MetroNode(withName: name, inLine: "2", center: CGPoint(x:0.5,y:0.5))
         
     }
     func save() {

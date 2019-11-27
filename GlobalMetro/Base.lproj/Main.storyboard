@@ -51,12 +51,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" backgroundImage="plus.rectangle" catalog="system"/>
+                                <connections>
+                                    <action selector="addLineButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dop-xe-1mx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addLineButton" destination="Puw-RH-crO" id="6S5-iB-82X"/>
                         <outlet property="addNodeButton" destination="f4K-LV-zwJ" id="QHd-QC-qC9"/>
                         <outlet property="metroMapView" destination="ogk-Vq-Vaf" id="O4Z-dQ-82X"/>
                         <outlet property="saveButton" destination="wey-Hh-kwX" id="7XT-lS-iuF"/>
