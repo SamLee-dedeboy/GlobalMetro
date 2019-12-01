@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2206CEDD2390ACBC0000525D /* CreateLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2206CEDC2390ACBC0000525D /* CreateLineViewController.swift */; };
+		22376309238EAA49003F7AF4 /* CreateNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22376308238EAA48003F7AF4 /* CreateNodeViewController.swift */; };
 		229AD62B238D3C7700EC7E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62A238D3C7700EC7E35 /* AppDelegate.swift */; };
 		229AD62D238D3C7700EC7E35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */; };
 		229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62E238D3C7700EC7E35 /* MapViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2206CEDC2390ACBC0000525D /* CreateLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLineViewController.swift; sourceTree = "<group>"; };
+		22376308238EAA48003F7AF4 /* CreateNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNodeViewController.swift; sourceTree = "<group>"; };
 		229AD627238D3C7700EC7E35 /* GlobalMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229AD62A238D3C7700EC7E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				229AD640238D402400EC7E35 /* MetroNode.swift */,
 				229AD642238D404300EC7E35 /* MetroLine.swift */,
 				229AD644238D410C00EC7E35 /* MetroMap.swift */,
+				22376308238EAA48003F7AF4 /* CreateNodeViewController.swift */,
+				2206CEDC2390ACBC0000525D /* CreateLineViewController.swift */,
 			);
 			path = GlobalMetro;
 			sourceTree = "<group>";
@@ -152,6 +158,8 @@
 			files = (
 				229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */,
 				229AD641238D402400EC7E35 /* MetroNode.swift in Sources */,
+				22376309238EAA49003F7AF4 /* CreateNodeViewController.swift in Sources */,
+				2206CEDD2390ACBC0000525D /* CreateLineViewController.swift in Sources */,
 				229AD63F238D3CC400EC7E35 /* MetroMapView.swift in Sources */,
 				229AD643238D404300EC7E35 /* MetroLine.swift in Sources */,
 				229AD62B238D3C7700EC7E35 /* AppDelegate.swift in Sources */,
