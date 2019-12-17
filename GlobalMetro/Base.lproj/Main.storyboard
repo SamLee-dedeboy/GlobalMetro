@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5oj-ex-W7W">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Enk-CZ-F2a">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,6 +8,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="NuY-qZ-sLw">
+            <objects>
+                <tableViewController id="cG0-Cz-bkq" customClass="SearchViewController" customModule="GlobalMetro" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W9c-5W-2oD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="bO4-ID-eNl">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MapCell" textLabel="wgm-yt-fsl" imageView="OOL-Hd-eIU" rowHeight="68" style="IBUITableViewCellStyleDefault" id="xTq-w9-GZH" customClass="MetroMapCell" customModule="GlobalMetro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="84" width="414" height="68"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xTq-w9-GZH" id="Uuo-sg-oDE">
+                                    <rect key="frame" x="0.0" y="0.0" width="382.5" height="68"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wgm-yt-fsl">
+                                            <rect key="frame" x="59.5" y="0.0" width="315" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="m.circle" catalog="system" id="OOL-Hd-eIU">
+                                            <rect key="frame" x="19.5" y="22" width="25" height="24"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="Show Map" id="5YW-Oc-sjj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cG0-Cz-bkq" id="GSZ-zD-mJ5"/>
+                            <outlet property="delegate" destination="cG0-Cz-bkq" id="e5m-ed-nTa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="OlM-Pm-jbf"/>
+                    <connections>
+                        <outlet property="searchBar" destination="bO4-ID-eNl" id="Ozi-t0-2xh"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goK-DA-oCv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28.985507246376812" y="272.54464285714283"/>
+        </scene>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,10 +75,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-NH-EIQ">
-                                <rect key="frame" x="20" y="108" width="196" height="50"/>
+                                <rect key="frame" x="20" y="108" width="312" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puw-RH-crO">
-                                        <rect key="frame" x="0.0" y="1.6666666666666643" width="80" height="47.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="1" width="80" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MsF-e0-Rvj"/>
                                             <constraint firstAttribute="width" constant="80" id="ujk-oQ-YWF"/>
@@ -34,7 +92,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4K-LV-zwJ">
-                                        <rect key="frame" x="88" y="1" width="50" height="49"/>
+                                        <rect key="frame" x="88" y="0.5" width="50" height="49.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="2uq-hA-2rQ"/>
                                             <constraint firstAttribute="height" constant="50" id="soX-ri-DdZ"/>
@@ -52,7 +110,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wey-Hh-kwX">
-                                        <rect key="frame" x="146" y="-1" width="50" height="50"/>
+                                        <rect key="frame" x="146" y="-1.5" width="50" height="50.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Aqw-jH-PRY"/>
                                             <constraint firstAttribute="width" constant="50" id="jyT-8K-BXC"/>
@@ -63,45 +121,60 @@
                                             <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dQ2-94-qbn"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb6-Yg-tcy">
+                                        <rect key="frame" x="204" y="-2.5" width="50" height="51.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6Ng-n5-zX0"/>
+                                            <constraint firstAttribute="width" constant="50" id="EpA-B4-dLu"/>
+                                        </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" backgroundImage="square.and.arrow.up.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="loadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="joX-dD-gTK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7S-kk-fms">
+                                        <rect key="frame" x="262" y="-2.5" width="50" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="K0m-j6-hVn"/>
+                                            <constraint firstAttribute="height" constant="50" id="UYR-Nt-8w8"/>
+                                        </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" backgroundImage="square.and.arrow.up.on.square.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="uploadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mMn-3A-Szp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-8Y-zio" customClass="myScrollView" customModule="GlobalMetro" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166" width="414" height="596"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-8Y-zio" customClass="myScrollView" customModule="GlobalMetro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="173" width="414" height="620"/>
                                 <subviews>
-                                    <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-Dh-7GK" customClass="MetroMapView" customModule="GlobalMetro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="932" height="1303"/>
+                                    <skView contentMode="scaleToFill" placeholderIntrinsicWidth="1000" placeholderIntrinsicHeight="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-Dh-7GK" customClass="MetroMapView" customModule="GlobalMetro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="932" id="Grk-rh-Ci0"/>
-                                            <constraint firstAttribute="height" constant="1303" id="rbc-fm-q55"/>
+                                            <constraint firstAttribute="height" constant="1000" id="cur-PW-NcE"/>
+                                            <constraint firstAttribute="width" constant="1000" id="kYQ-0B-ccg"/>
                                         </constraints>
                                     </skView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="KVd-Dh-7GK" firstAttribute="leading" secondItem="PPf-8Y-zio" secondAttribute="leading" id="4KP-tX-ngK"/>
-                                    <constraint firstAttribute="width" constant="414" id="H92-Ia-JqC"/>
-                                    <constraint firstAttribute="height" constant="596" id="IMG-Cu-hao"/>
-                                    <constraint firstAttribute="bottom" secondItem="KVd-Dh-7GK" secondAttribute="bottom" id="Nz1-fD-Sdx"/>
-                                    <constraint firstItem="KVd-Dh-7GK" firstAttribute="top" secondItem="PPf-8Y-zio" secondAttribute="top" id="dkT-ag-aCY"/>
-                                    <constraint firstAttribute="trailing" secondItem="KVd-Dh-7GK" secondAttribute="trailing" id="gAz-26-rXF"/>
+                                    <constraint firstAttribute="bottom" secondItem="KVd-Dh-7GK" secondAttribute="bottom" constant="-355" id="ATO-7k-GyG"/>
+                                    <constraint firstItem="KVd-Dh-7GK" firstAttribute="top" secondItem="PPf-8Y-zio" secondAttribute="top" id="DRo-p8-O0y"/>
+                                    <constraint firstAttribute="trailing" secondItem="KVd-Dh-7GK" secondAttribute="trailing" constant="-444" id="ZBP-DJ-0di"/>
+                                    <constraint firstItem="KVd-Dh-7GK" firstAttribute="leading" secondItem="PPf-8Y-zio" secondAttribute="leading" id="qwt-XV-f2P"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Lyj-WT-Lap"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="RKX-tu-hft"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6Y-vn-Ube">
-                                <rect key="frame" x="252" y="118" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="testButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3fx-iu-kBE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PPf-8Y-zio" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2ID-T0-XqT"/>
-                            <constraint firstItem="PPf-8Y-zio" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9lg-pM-mIc"/>
+                            <constraint firstItem="PPf-8Y-zio" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2aa-Gm-8ZT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PPf-8Y-zio" secondAttribute="bottom" constant="20" id="GQy-F5-OR4"/>
+                            <constraint firstItem="PPf-8Y-zio" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="S5P-eU-SFV"/>
+                            <constraint firstItem="PPf-8Y-zio" firstAttribute="top" secondItem="lGn-NH-EIQ" secondAttribute="bottom" constant="15" id="hGP-gH-X23"/>
                             <constraint firstItem="lGn-NH-EIQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kWg-ta-771"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="PPf-8Y-zio" secondAttribute="bottom" constant="50" id="w7N-xs-zgK"/>
                             <constraint firstItem="lGn-NH-EIQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="xKs-Pv-vd3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -120,7 +193,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="liE-uQ-C0t"/>
             </objects>
-            <point key="canvasLocation" x="69.565217391304358" y="192.85714285714286"/>
+            <point key="canvasLocation" x="979.71014492753636" y="192.85714285714286"/>
         </scene>
         <!--Create Line View Controller-->
         <scene sceneID="AAo-5Q-fhz">
@@ -175,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0G-12-Zc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1113.0434782608697" y="684.375"/>
+            <point key="canvasLocation" x="2023.1884057971015" y="684.375"/>
         </scene>
         <!--Create Node View Controller-->
         <scene sceneID="sLw-7x-7nJ">
@@ -218,28 +291,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVt-OI-DeT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114.4927536231885" y="-5.3571428571428568"/>
+            <point key="canvasLocation" x="2024.6376811594205" y="-5.3571428571428568"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="gTb-lC-o6X">
+        <scene sceneID="wRN-lg-3IY">
             <objects>
-                <navigationController id="5oj-ex-W7W" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dc2-v0-el6">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Enk-CZ-F2a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1nV-DO-ESc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sg5-OR-IFF"/>
+                        <segue destination="cG0-Cz-bkq" kind="relationship" relationship="rootViewController" id="1wS-ft-ycZ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="70L-L2-Jha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O9g-LF-chF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-800" y="-447"/>
+            <point key="canvasLocation" x="-881.15942028985512" y="272.54464285714283"/>
         </scene>
     </scenes>
     <resources>
+        <image name="m.circle" catalog="system" width="64" height="62"/>
         <image name="plus.circle" catalog="system" width="64" height="62"/>
         <image name="plus.rectangle" catalog="system" width="64" height="48"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="58" height="64"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="56" height="64"/>
+        <image name="square.and.arrow.up.on.square.fill" catalog="system" width="60" height="64"/>
     </resources>
 </document>

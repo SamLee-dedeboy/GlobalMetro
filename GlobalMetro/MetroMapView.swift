@@ -9,9 +9,18 @@
 import UIKit
 import SpriteKit
 class MetroMapView: SKView {
-    var mapInfo = [String:[MetroNode]]()
+    //var mapInfo = [String:[MetroNode]]()
     var selectedNode: MetroNode?
-    var selectedLine: String?
+    
+    var selectedLine: String? {
+        didSet {
+            if let mvc = self.delegate as? MapViewController {
+                mvc.selectedLineDidChange()
+            }
+        }
+        
+    }
+ 
     /*
     func drawMap() {
         //TODO: optimized so that each line is on different layer
@@ -40,13 +49,14 @@ class MetroMapView: SKView {
     func drawMap(_ mapInfo: [String:[MetroNode]]) {
         
     }
+    /*
     func drawNode(_ node:MetroNode) {
-        if mapInfo[node.metroLine] != nil{
+        if mapInfo[node.metroLine] != nil {
             print("add1")
             let lastNode = mapInfo[node.metroLine]!.last!
             mapInfo[node.metroLine]!.append(node)
-            node.adjacentNodes.append(lastNode)
-            lastNode.adjacentNodes.append(node)
+            node.adjacentNodes.append(lastNode.stationName)
+            lastNode.adjacentNodes.append(node.stationName)
             drawLineBetweenNode(onScene: self.scene!, node, lastNode)
             self.scene!.addChild(node)
 
@@ -56,14 +66,17 @@ class MetroMapView: SKView {
             self.scene!.addChild(node)
             //self.presentScene(self.scene!)
         }
-        highlightedNode(node, onScene: self.scene!)
+        highlightNode(node, onScene: self.scene!)
     }
-
+*/
+    /*
     @objc func scaleView(pinchRecognizedBy recognizer: UIPinchGestureRecognizer) {
         print("recognized")
         self.transform = CGAffineTransform.identity.scaledBy(x: recognizer.scale, y: recognizer.scale)
     }
+ */
 }
+
 extension MetroMapView {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch began")
@@ -76,15 +89,21 @@ extension MetroMapView {
             if let touchedNode = touchedNodes.first {
                 if let touchedNode = touchedNode as? MetroNode {
                     print("node selected")
-                
+                    if let mvc = self.delegate as? MapViewController {
+                        mvc.highlightLine(touchedNode.metroLine)
+                    }
                     selectedNode = touchedNode
                     selectedLine = touchedNode.metroLine
-                    highLightLine(selectedLine!)
                     print("returning")
                     return
                 }
             } else {
                 print("no nodes")
+            }
+            if selectedNode != nil {
+                if let mvc = self.delegate as? MapViewController {
+                    mvc.deHighlightLine(selectedNode!.metroLine)
+                }
             }
             selectedNode = nil
             selectedLine = nil
@@ -92,6 +111,31 @@ extension MetroMapView {
             print("no scene")
         }
     }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let mvc = self.delegate as? MapViewController {
+            mvc.handleTouchesMoved(touches, with: event)
+        }
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch ended")
+        superview?.isUserInteractionEnabled = true
+        if let selectedNode = self.selectedNode {
+            selectedNode.coordinateInMap = selectedNode.position
+        }
+        self.selectedNode = nil
+    }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touch canceled")
+        superview?.isUserInteractionEnabled = true
+        if let selectedNode = self.selectedNode {
+            selectedNode.coordinateInMap = selectedNode.position
+        }
+        self.selectedNode = nil
+    
+    }
+}
+    /*
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
      
         guard let touch = touches.first else {
@@ -106,16 +150,17 @@ extension MetroMapView {
             print("node moved")
             print(touchedNode.position)
             touchedNode.position = touch.location(in: self.scene!)
-            print(touchedNode.stationName)
-            for adjacentNode in touchedNode.adjacentNodes {
-                self.scene!.removeChildren(in:[
-                    (self.scene!.childNode(withName:
-                        touchedNode.stationName + "-" + adjacentNode.stationName))
-                        ??
+            for adjacentNodeName in touchedNode.adjacentNodes {
+                if let adjacentNode = mapInfo.getNodeByName(adjacentNodeName) {
+                    self.scene!.removeChildren(in:[
                         (self.scene!.childNode(withName:
-                            adjacentNode.stationName + "-" + touchedNode.stationName))!                    ]
-                )
-                drawLineBetweenNode(onScene: self.scene!, touchedNode, adjacentNode)
+                            touchedNode.stationName + "-" + adjacentNode.stationName))
+                            ??
+                            (self.scene!.childNode(withName:
+                                adjacentNode.stationName + "-" + touchedNode.stationName))!                    ]
+                    )
+                    drawLineBetweenNode(onScene: self.scene!, touchedNode, adjacentNode)
+                }
             }
 
             //drawMap()
@@ -127,18 +172,7 @@ extension MetroMapView {
             //self.center.y += positionInScene.y - previousPosition.y
         }
     }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch ended")
-        superview?.isUserInteractionEnabled = true
-
-        self.selectedNode = nil
-    }
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touch canceled")
-        superview?.isUserInteractionEnabled = true
-
-        self.selectedNode = nil
-    }
+    
     override var next: UIResponder? {
         get {
             return nil
@@ -164,16 +198,16 @@ extension MetroMapView {
         print("addNewLine:\(src.metroLine), \(src.lineColor)")
         //self.presentScene(scene)
     }
-    func highLightLine(_ lineName: String) {
+    func highlightLine(_ lineName: String) {
         if let scene = self.scene {
             if let line = mapInfo[lineName] {
                 for node in line {
-                    highlightedNode(node, onScene: scene)
+                    highlightNode(node, onScene: scene)
                 }
             }
         }
     }
-    func highlightedNode(_ node:MetroNode, onScene scene:SKScene) {
+    func highlightNode(_ node:MetroNode, onScene scene:SKScene) {
         let path = CGMutablePath()
         path.addArc(center: node.coordinateInMap,
                         radius: 20,
@@ -183,4 +217,24 @@ extension MetroMapView {
         node.path = path
         print("highlighted")
     }
+    func deHighlightLine(_ lineName: String) {
+        if let scene = self.scene {
+            if let line = mapInfo[lineName] {
+                for node in line {
+                    deHighlightNode(node, onScene: scene)
+                }
+            }
+        }
+    }
+    func deHighlightNode(_ node:MetroNode, onScene scene:SKScene) {
+        let path = CGMutablePath()
+        path.addArc(center: node.coordinateInMap,
+                        radius: 15,
+                        startAngle: 0,
+                        endAngle: CGFloat.pi * 2,
+                        clockwise: true)
+        node.path = path
+        print("dehighlighted")
+    }
 }
+*/

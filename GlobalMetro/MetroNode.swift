@@ -22,7 +22,8 @@ final class MetroNode:SKShapeNode, Codable {
     var metroLine:String
     var lineColor:UIColor = UIColor.red
     var coordinateInMap:CGPoint
-    var adjacentNodes = [MetroNode]()
+
+    var adjacentNodes = [String]()
     init(withName name:String, inLine line:String, center:CGPoint) {
 
         self.stationName = name
@@ -33,9 +34,14 @@ final class MetroNode:SKShapeNode, Codable {
         default: self.lineColor = UIColor.blue
         }
         self.coordinateInMap = center
+
         super.init()
         let path = CGMutablePath()
-        path.addEllipse(in: CGRect(origin: center, size: CGSize(width: 30,height: 30)))
+        path.addArc(center: CGPoint.zero,
+            radius: 15,
+            startAngle: 0,
+            endAngle: CGFloat.pi * 2,
+            clockwise: true)
         /*
              path.addArc(center: center,
                         radius: 15,
@@ -58,57 +64,61 @@ final class MetroNode:SKShapeNode, Codable {
     init(from otherNode: MetroNode) {
         self.stationName = otherNode.stationName
         self.metroLine = otherNode.metroLine
-        self.coordinateInMap = otherNode.coordinateInMap
         self.adjacentNodes = otherNode.adjacentNodes
-        super.init()
-    }
-    convenience init(fromFile fileName:String) throws {
-        let json = """
-        {
-            "name": "Durian",
-            "points": 600,
-            "description": "A fruit with a distinctive scent."
-        }
-        """.data(using: .utf8)!
-        let decoder = JSONDecoder()
-        let node = try decoder.decode(MetroNode.self, from: json)
-        self.init(from:node)
-    }
- 
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(stationName, forKey:.stationName)
-        try container.encode(metroLine+".json", forKey:.metroLine)
-        
-        try container.encode(coordinateInMap, forKey:.coordinateInMap)
-        
-        var adjacentNodeFileNames = String()
-        for adjacentNode in adjacentNodes {
-            adjacentNodeFileNames += adjacentNode.name! + ".json,"
-        }
-        try container.encode(adjacentNodeFileNames, forKey:.adjacentNodeFileNames)
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        stationName = try values.decode(String.self, forKey: .stationName)
-        metroLine = try values.decode(String.self, forKey: .metroLine)
+        self.coordinateInMap = otherNode.coordinateInMap
 
-        
-        coordinateInMap = try values.decode(CGPoint.self, forKey: .coordinateInMap)
         super.init()
-     
-  }
+
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.stationName = try container.decode(String.self, forKey: .stationName)
+        self.metroLine = try container.decode(String.self, forKey: .metroLine)
+        self.coordinateInMap = try container.decode(CGPoint.self, forKey: .coordinateInMap)
+        self.adjacentNodes = try container.decode([String].self, forKey: .adjacentNodes)
+        super.init()
+    
+        let path = CGMutablePath()
+        path.addEllipse(in: CGRect(origin: self.coordinateInMap, size: CGSize(width: 30,height: 30)))
+        /*
+             path.addArc(center: center,
+                        radius: 15,
+                        startAngle: 0,
+                        endAngle: CGFloat.pi * 2,
+                        clockwise: true)
+        */
+        switch metroLine {
+        case "1": self.lineColor = UIColor.blue
+        case "2": self.lineColor = UIColor.red
+        default: self.lineColor = UIColor.blue
+        }
+        self.position = self.coordinateInMap
+        self.path = path
+        self.lineWidth = 1
+        self.glowWidth = 0.5
+        self.fillColor = .white
+        self.zPosition = 10
+    }
 }
 
 extension MetroNode {
     enum CodingKeys: String, CodingKey {
         case stationName
         case metroLine
-        
         case coordinateInMap
-        case adjacentNodeFileNames
+        case adjacentNodes
+       
     }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(stationName, forKey: CodingKeys.stationName)
+        try container.encode(metroLine, forKey: CodingKeys.metroLine)
+        try container.encode(coordinateInMap, forKey: CodingKeys.coordinateInMap)
+        try container.encode(adjacentNodes, forKey: CodingKeys.adjacentNodes)
+
+        //super.encode(with: encoder as! NSCoder)
+    }
+    
+
 
 }
