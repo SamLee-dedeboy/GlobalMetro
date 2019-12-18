@@ -12,6 +12,7 @@
 		228A7C2623A7603000057C65 /* MetroMapDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2523A7603000057C65 /* MetroMapDocument.swift */; };
 		228A7C2823A8EC7500057C65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2723A8EC7500057C65 /* SearchViewController.swift */; };
 		228A7C2A23A911D200057C65 /* MetroMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2923A911D200057C65 /* MetroMapCell.swift */; };
+		228A7C2C23AA11FD00057C65 /* SaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2B23AA11FD00057C65 /* SaveMapViewController.swift */; };
 		229AD62B238D3C7700EC7E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62A238D3C7700EC7E35 /* AppDelegate.swift */; };
 		229AD62D238D3C7700EC7E35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */; };
 		229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62E238D3C7700EC7E35 /* MapViewController.swift */; };
@@ -30,6 +31,7 @@
 		228A7C2523A7603000057C65 /* MetroMapDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroMapDocument.swift; sourceTree = "<group>"; };
 		228A7C2723A8EC7500057C65 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		228A7C2923A911D200057C65 /* MetroMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroMapCell.swift; sourceTree = "<group>"; };
+		228A7C2B23AA11FD00057C65 /* SaveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMapViewController.swift; sourceTree = "<group>"; };
 		229AD627238D3C7700EC7E35 /* GlobalMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229AD62A238D3C7700EC7E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				228A7C2523A7603000057C65 /* MetroMapDocument.swift */,
 				228A7C2723A8EC7500057C65 /* SearchViewController.swift */,
 				228A7C2923A911D200057C65 /* MetroMapCell.swift */,
+				228A7C2B23AA11FD00057C65 /* SaveMapViewController.swift */,
 			);
 			path = GlobalMetro;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228A7C2C23AA11FD00057C65 /* SaveMapViewController.swift in Sources */,
 				229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */,
 				228A7C2823A8EC7500057C65 /* SearchViewController.swift in Sources */,
 				229AD641238D402400EC7E35 /* MetroNode.swift in Sources */,

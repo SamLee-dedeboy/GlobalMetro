@@ -10,6 +10,8 @@ import UIKit
 import SpriteKit
 class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate {
     var metroMap = MetroMap()
+
+    
     func selectedLineDidChange() {
         if let metroMapView = self.metroMapView {
             if metroMapView.selectedLine == nil {
@@ -46,6 +48,16 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
             }
             return
         }
+        
+        if segue.identifier == "Save Map" {
+            if let smvc = segue.destination as? SaveMapViewController {
+                if let ppc = smvc.popoverPresentationController {
+                    ppc.sourceRect = saveButton.frame
+                    ppc.delegate = self
+                    smvc.preferredContentSize = CGSize(width:250, height:500)
+                }
+            }
+        }
     }
     
     var counter = 0
@@ -54,7 +66,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
         didSet {
             
             let scene = SKScene(size: metroMapView.bounds.size)
-            
+            scene.backgroundColor = UIColor.white
             scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             metroMapView.delegate = self
             metroMapView.presentScene(scene)
@@ -92,7 +104,10 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
 
     }
     override func viewDidLayoutSubviews() {
-
+        //drawMap()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        drawMap()
     }
     override func viewDidLoad() {
 
@@ -139,18 +154,18 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
         self.metroMapView.selectedLine = name
     }
 
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
+    func saveMap(withName mapName:String) {
+        self.metroMap.mapName = mapName
         if let json = metroMap.json {
             if let url = try? FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: true
-            ).appendingPathComponent("metroMap.json") {
+            ).appendingPathComponent(mapName + ".json") {
                 do {
                     try json.write(to:url)
-                    print(url)
-                    print("saved")
+                    print("map saved at \(url)")
                 } catch let error {
                     print("save file failed: \(error)")
                 }
@@ -405,7 +420,7 @@ extension MapViewController {
                     }
                     scene.addChild(node)
                     highlightNode(node, onScene: scene)
-                    print("added Node on :",node.position, node.fillColor)
+                    print("added Node on :",node.position )
                 }
             }
             //draw Lines

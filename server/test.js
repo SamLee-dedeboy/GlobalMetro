@@ -11,17 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/
 app.get('/search', function (req, res) {
     console.log("search req for:", req.originalUrl)
     console.log("param:", req.query.q)
-    var searchResult = {
-        "resultList":[{"filename":"1","description":"someDescript1"},{"filename":"2","description":"something2"}] 
-    }
+    var searchResult = "saveTest1.json" + " " + "DefaultMapName.json" + " "+ "testfile2.json"
     res.send(searchResult);
 })
 
-app.all('/get_file/*', function(req,res) {
-    console.log("get req for:", req.originalUrl)
+app.all('/get_file/:filename', function(req,res) {
+    console.log("get req for:", req.params.filename)
     //TODO: read from file and send as json
-    var buf = new Buffer.alloc(1024);
-    res.sendfile(__dirname + "/MetroMap/" + "DefaultMapName.json", 'r+', function(err, fd) {
+    res.sendFile(__dirname + "/MetroMap/" + req.params.filename, 'r+', function(err, fd) {
         if (err) {
             return console.error(err);
         }

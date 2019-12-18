@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchViewController: UITableViewController {
-    var searchResult = ["One", "Two", "Three"]
+    var searchResult = ["Empty"]
     let serverURL = "http://127.0.0.1:8081"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,10 @@ class SearchViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = searchResult[indexPath.row]
+        if let cell = cell as? MetroMapCell {
+            cell.textLabel?.text = searchResult[indexPath.row]
+            cell.fileName = searchResult[indexPath.row]
+        }
         return cell
     }
     
@@ -103,8 +106,8 @@ class SearchViewController: UITableViewController {
                         print ("got data: \(dataString)")
                         
                         mapvc.metroMap = MetroMap(json: data)!
-                        mapvc.metroMap.printLines()
-                        mapvc.drawMap()
+                        //mapvc.metroMap.printLines()
+                        //mapvc.drawMap()
                     }
                 }
                 task.resume()
@@ -117,6 +120,7 @@ class SearchViewController: UITableViewController {
         }
     }
     func search(for param:String?) {
+        self.searchResult.removeAll()
         if let url = URL(string: serverURL + "/search?q=" + (param ??  "")) {
             print(url)
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -131,7 +135,13 @@ class SearchViewController: UITableViewController {
                 }
                 if let data = data,
                     let dataString = String(data: data, encoding: .utf8) {
-                    print ("got data: \(dataString)")
+                    for result in dataString.split(separator: " ") {
+                        self.searchResult.append(String(result))
+                    }
+                    print ("got data: \(self.searchResult)")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
             task.resume()
@@ -157,5 +167,6 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("SearchButtonClicked")
         search(for: searchBar.text)
+
     }
 }

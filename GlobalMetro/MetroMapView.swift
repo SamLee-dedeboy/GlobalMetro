@@ -85,7 +85,7 @@ extension MetroMapView {
         }
         if let scene = self.scene {
             let touchedNodes = scene.nodes(at:touch.location(in:scene))
-        
+          
             if let touchedNode = touchedNodes.first {
                 if let touchedNode = touchedNode as? MetroNode {
                     print("node selected")
@@ -94,6 +94,16 @@ extension MetroMapView {
                     }
                     selectedNode = touchedNode
                     selectedLine = touchedNode.metroLine
+                    print("returning")
+                    return
+                    //TODO: delete above
+                } else if let touchedNodeInnerCircle = touchedNode as? SKShapeNode, let touchedMetroNode = touchedNodeInnerCircle.parent as? MetroNode {
+                        print("touched metroNode: ",  touchedMetroNode)
+                    if let mvc = self.delegate as? MapViewController {
+                        mvc.highlightLine(touchedMetroNode.metroLine)
+                    }
+                    selectedNode = touchedMetroNode
+                    selectedLine = touchedMetroNode.metroLine
                     print("returning")
                     return
                 }

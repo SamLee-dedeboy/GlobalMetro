@@ -24,6 +24,10 @@ final class MetroNode:SKShapeNode, Codable {
     var coordinateInMap:CGPoint
 
     var adjacentNodes = [String]()
+    var outerCircle = SKShapeNode()
+    var innerCircle = SKShapeNode()
+    var label = SKLabelNode()
+    
     init(withName name:String, inLine line:String, center:CGPoint) {
 
         self.stationName = name
@@ -34,27 +38,27 @@ final class MetroNode:SKShapeNode, Codable {
         default: self.lineColor = UIColor.blue
         }
         self.coordinateInMap = center
-
+        
         super.init()
+        
+
         let path = CGMutablePath()
         path.addArc(center: CGPoint.zero,
-            radius: 15,
+            radius: 20,
             startAngle: 0,
             endAngle: CGFloat.pi * 2,
             clockwise: true)
-        /*
-             path.addArc(center: center,
-                        radius: 15,
-                        startAngle: 0,
-                        endAngle: CGFloat.pi * 2,
-                        clockwise: true)
-        */
         self.position = center
         self.path = path
         self.lineWidth = 1
         self.glowWidth = 0.5
         self.fillColor = .white
-        self.zPosition = 10
+        self.zPosition = 11
+    
+        self.name = stationName
+        addCircle()
+        addLabel()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,6 +74,7 @@ final class MetroNode:SKShapeNode, Codable {
         super.init()
 
     }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.stationName = try container.decode(String.self, forKey: .stationName)
@@ -93,11 +98,54 @@ final class MetroNode:SKShapeNode, Codable {
         default: self.lineColor = UIColor.blue
         }
         self.position = self.coordinateInMap
+        
         self.path = path
         self.lineWidth = 1
         self.glowWidth = 0.5
         self.fillColor = .white
-        self.zPosition = 10
+        self.zPosition = 11
+        self.name = stationName
+        addCircle()
+        addLabel()
+    }
+    func addCircle() {
+        let outerPath = CGMutablePath()
+        outerPath.addArc(center: CGPoint.zero,
+                   radius: 25,
+                   startAngle: 0,
+                   endAngle: CGFloat.pi * 2,
+                   clockwise: true)
+        outerCircle.path = outerPath
+        outerCircle.position = CGPoint.zero
+        outerCircle.fillColor = self.lineColor
+        
+        let innerPath = CGMutablePath()
+        innerPath.addArc(center: CGPoint.zero,
+                   radius: 20,
+                   startAngle: 0,
+                   endAngle: CGFloat.pi * 2,
+                   clockwise: true)
+        innerCircle.path = innerPath
+        innerCircle.position = CGPoint.zero
+        innerCircle.fillColor = UIColor.white
+        
+        outerCircle.zPosition = self.zPosition - 2
+        innerCircle.zPosition = self.zPosition - 1
+        outerCircle.name = "outerCircle"
+        innerCircle.name = "innerCircle"
+        innerCircle.isUserInteractionEnabled = false
+        outerCircle.isUserInteractionEnabled = false
+        self.addChild(outerCircle)
+        self.addChild(innerCircle)
+    }
+    func addLabel() {
+        self.label.text = self.stationName
+        self.label.position = CGPoint.zero
+        self.label.zPosition = self.zPosition + 1
+        self.label.fontSize = 35
+        self.label.fontColor = UIColor.black
+        self.label.fontName = "Avenir"
+        self.addChild(label)
     }
 }
 
