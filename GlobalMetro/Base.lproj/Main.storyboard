@@ -156,7 +156,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-NH-EIQ">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-NH-EIQ">
                                 <rect key="frame" x="20" y="108" width="312" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puw-RH-crO">
@@ -236,6 +236,7 @@
                                 <subviews>
                                     <skView contentMode="scaleToFill" placeholderIntrinsicWidth="1000" placeholderIntrinsicHeight="1000" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-Dh-7GK" customClass="MetroMapView" customModule="GlobalMetro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1000" id="cur-PW-NcE"/>
                                             <constraint firstAttribute="width" constant="1000" id="kYQ-0B-ccg"/>
@@ -251,13 +252,15 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="Lyj-WT-Lap"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="RKX-tu-hft"/>
                             </scrollView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wY4-wg-W46">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-wS-SPt">
+                                <rect key="frame" x="0.0" y="810" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" image="plus.app" catalog="system" width="90" id="Wn6-3K-4uM"/>
-                                    <barButtonItem image="plus.circle" catalog="system" id="BWg-Su-XQn"/>
-                                    <barButtonItem systemItem="save" id="NQo-AQ-6BD"/>
+                                    <barButtonItem enabled="NO" title="Cancel" id="mUx-w2-cmB">
+                                        <connections>
+                                            <action selector="cancelEditButtonPressed:" destination="BYZ-38-t0r" id="3gZ-dN-bgN"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -273,21 +276,56 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="10n-1V-TXj"/>
+                    <navigationItem key="navigationItem" id="10n-1V-TXj">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="saz-tz-pGu">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="tac-oo-j4e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addLineButton" destination="Puw-RH-crO" id="6S5-iB-82X"/>
                         <outlet property="addNodeButton" destination="f4K-LV-zwJ" id="QHd-QC-qC9"/>
+                        <outlet property="buttonStackView" destination="lGn-NH-EIQ" id="VUe-QS-r3C"/>
+                        <outlet property="cancelEditButton" destination="mUx-w2-cmB" id="DSm-iq-pvi"/>
                         <outlet property="mapScrollView" destination="PPf-8Y-zio" id="gGO-7p-Cvf"/>
                         <outlet property="metroMapView" destination="KVd-Dh-7GK" id="8Gl-1n-p2i"/>
                         <outlet property="saveButton" destination="wey-Hh-kwX" id="7XT-lS-iuF"/>
-                        <outlet property="toolBar" destination="wY4-wg-W46" id="JkI-2h-vQ4"/>
+                        <segue destination="fbb-AR-MgS" kind="presentation" identifier="Show Node Detail" id="Uv0-hr-hZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <pinchGestureRecognizer id="liE-uQ-C0t"/>
             </objects>
             <point key="canvasLocation" x="1889.8550724637682" y="192.85714285714286"/>
+        </scene>
+        <!--Show Node Detail View Controller-->
+        <scene sceneID="84X-Hn-j2x">
+            <objects>
+                <viewController id="fbb-AR-MgS" customClass="ShowNodeDetailViewController" customModule="GlobalMetro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6j3-Ge-Xii">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3P-ja-Abm">
+                                <rect key="frame" x="20" y="31" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Return"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="fbb-AR-MgS" eventType="touchUpInside" id="wJt-ej-AHp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bS5-Si-daP"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mlh-Cq-Gbf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3703" y="538"/>
         </scene>
         <!--Create Line View Controller-->
         <scene sceneID="AAo-5Q-fhz">
@@ -342,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0G-12-Zc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3843.4782608695655" y="684.375"/>
+            <point key="canvasLocation" x="2914" y="762"/>
         </scene>
         <!--Create Node View Controller-->
         <scene sceneID="sLw-7x-7nJ">
@@ -470,7 +508,6 @@
     </scenes>
     <resources>
         <image name="m.circle" catalog="system" width="64" height="62"/>
-        <image name="plus.app" catalog="system" width="64" height="56"/>
         <image name="plus.circle" catalog="system" width="64" height="62"/>
         <image name="plus.rectangle" catalog="system" width="64" height="48"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="58" height="64"/>

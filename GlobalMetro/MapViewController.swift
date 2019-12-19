@@ -10,17 +10,31 @@ import UIKit
 import SpriteKit
 class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate {
     var metroMap = MetroMap()
-
-    
+   
+    func showNodeDetail(_ node: MetroNode) {
+        performSegue(withIdentifier: "Show Node Detail", sender: node)
+    }
+    func editModeDidChange() {
+        buttonStackView.isHidden = !self.metroMapView.isEditMode
+        if self.metroMapView.isEditMode {
+            self.cancelEditButton.isEnabled = true
+            self.editButtonItem.isEnabled = false
+        } else {
+            self.cancelEditButton.isEnabled = false
+            self.editButtonItem.isEnabled = true
+        }
+    }
     func selectedLineDidChange() {
-        if let metroMapView = self.metroMapView {
-            if metroMapView.selectedLine == nil {
-                addNodeButton.isEnabled = false
-            } else {
-                addNodeButton.isEnabled = true
-            }
-            print("selectedLine didSet: \(metroMapView.selectedLine)")
+        if self.metroMapView.isEditMode {
+            if let metroMapView = self.metroMapView {
+                if metroMapView.selectedLine == nil {
+                    addNodeButton.isEnabled = false
+                } else {
+                    addNodeButton.isEnabled = true
+                }
+                print("selectedLine didSet: \(metroMapView.selectedLine)")
 
+            }
         }
     }
     //var selectedNode: MetroNode?
@@ -59,6 +73,14 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
                 }
             }
         }
+        
+        if segue.identifier == "Show Node Detail" {
+            if let sndvc = segue.destination as? ShowNodeDetailViewController,
+                let presentedNode = sender as? MetroNode {
+                sndvc.presentedNode = presentedNode
+                
+            }
+        }
     }
     
     var counter = 0
@@ -91,8 +113,12 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     @IBOutlet weak var addLineButton: UIButton!
     @IBOutlet weak var addNodeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var buttonStackView: UIStackView!
     
-    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var cancelEditButton: UIBarButtonItem!
+    
+    
+    //@IBOutlet weak var toolBar: UIToolbar!
     // MARK: VC lifecycle
     override func viewWillLayoutSubviews() {
         mapScrollView.contentSize = metroMapView.frame.size
@@ -110,7 +136,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     }
     override func viewDidAppear(_ animated: Bool) {
         drawMap()
-        self.toolBar.isHidden = true
+        //self.toolBar.isHidden = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,6 +243,12 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
             }
         }
         task.resume()
+    }
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        self.metroMapView.isEditMode = true
+    }
+    @IBAction func cancelEditButtonPressed(_ sender: UIBarButtonItem) {
+        self.metroMapView.isEditMode = false
     }
 }
 // MARK: popover extension

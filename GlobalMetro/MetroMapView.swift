@@ -11,7 +11,13 @@ import SpriteKit
 class MetroMapView: SKView {
     //var mapInfo = [String:[MetroNode]]()
     var selectedNode: SKNode?
-    
+    var isEditMode = false {
+        didSet {
+            if let mvc = self.delegate as? MapViewController {
+                mvc.editModeDidChange()
+            }
+        }
+    }
     var selectedLine: String? {
         didSet {
             if let mvc = self.delegate as? MapViewController {
@@ -87,6 +93,7 @@ extension MetroMapView {
             let touchedNodes = scene.nodes(at:touch.location(in:scene))
           
             if let touchedNode = touchedNodes.first {
+          
                 if let touchedNodeInnerCircle = touchedNode as? SKShapeNode, let touchedMetroNode = touchedNodeInnerCircle.parent as? MetroNode {
                         print("touched metroNode: ",  touchedMetroNode)
                     if let mvc = self.delegate as? MapViewController {
@@ -97,11 +104,14 @@ extension MetroMapView {
                     print("returning")
                     return
                 } else if let touchedLabelNode = touchedNode as? SKLabelNode {
-                    print("selected label:\(touchedLabelNode.text)")
-                    selectedNode = touchedLabelNode
-                    selectedLine = (touchedLabelNode.parent as? MetroNode)?.metroLine
-                    return
+                    if isEditMode {
+                        print("selected label:\(touchedLabelNode.text)")
+                        selectedNode = touchedLabelNode
+                        selectedLine = (touchedLabelNode.parent as? MetroNode)?.metroLine
+                        return
+                    }
                 }
+             
             } else {
                 print("no nodes")
             }
@@ -118,20 +128,30 @@ extension MetroMapView {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let mvc = self.delegate as? MapViewController {
-            mvc.handleTouchesMoved(touches, with: event)
+        if isEditMode {
+            if let mvc = self.delegate as? MapViewController {
+                mvc.handleTouchesMoved(touches, with: event)
+            }
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch ended")
         superview?.isUserInteractionEnabled = true
-        if let selectedNode = self.selectedNode as? MetroNode {
-            selectedNode.coordinateInMap = selectedNode.position
-        }
-        if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
-            parentNode.labelPosition = selectedNode.position
+        if isEditMode {
+            if let selectedNode = self.selectedNode as? MetroNode {
+                selectedNode.coordinateInMap = selectedNode.position
+            }
+            if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
+                parentNode.labelPosition = selectedNode.position
+            }
+        } else {
+            if let selectedNode = self.selectedNode as? MetroNode,
+                let mvc = self.delegate as? MapViewController {
+                mvc.showNodeDetail(selectedNode)
+            }
         }
         self.selectedNode = nil
+
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch canceled")
