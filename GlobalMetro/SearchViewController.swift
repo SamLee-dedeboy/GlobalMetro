@@ -32,8 +32,9 @@ class SearchViewController: UITableViewController {
 
         // Configure the cell...
         if let cell = cell as? MetroMapCell {
-            cell.textLabel?.text = searchResult[indexPath.row]
             cell.fileName = searchResult[indexPath.row]
+            cell.textLabel?.text = String(cell.fileName!.split(separator:".")[0])
+
         }
         return cell
     }
@@ -90,6 +91,8 @@ class SearchViewController: UITableViewController {
                 let mapvc = segue.destination as? MapViewController,
                 let fileName = selectedMap.fileName,
                 let url = URL(string: serverURL + "/get_file/" + fileName) {
+                mapvc.hidesBottomBarWhenPushed = true
+                mapvc.title = selectedMap.textLabel?.text
                 print(url)
                 let task = URLSession.shared.dataTask(with: url) { data, response, error in
                     if let error = error {

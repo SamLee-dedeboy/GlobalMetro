@@ -53,6 +53,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
             if let smvc = segue.destination as? SaveMapViewController {
                 if let ppc = smvc.popoverPresentationController {
                     ppc.sourceRect = saveButton.frame
+                  
                     ppc.delegate = self
                     smvc.preferredContentSize = CGSize(width:250, height:500)
                 }
@@ -91,6 +92,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     @IBOutlet weak var addNodeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var toolBar: UIToolbar!
     // MARK: VC lifecycle
     override func viewWillLayoutSubviews() {
         mapScrollView.contentSize = metroMapView.frame.size
@@ -108,9 +110,9 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     }
     override func viewDidAppear(_ animated: Bool) {
         drawMap()
+        self.toolBar.isHidden = true
     }
     override func viewDidLoad() {
-
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //metroMapView.frame = CGRect(x: 0, y: 0, width: 1200, height: 800)
@@ -262,8 +264,8 @@ extension MapViewController {
             return
         }
                         
-        if let touchedNode = self.metroMapView.selectedNode {
-            var lastPosition = touchedNode.position
+        if let touchedNode = self.metroMapView.selectedNode as? MetroNode{
+            let lastPosition = touchedNode.position
             touchedNode.position = touch.location(in: self.metroMapView.scene!)
             print("node moved from \(lastPosition) to \(touchedNode.position)")
                 
@@ -285,9 +287,13 @@ extension MapViewController {
 
             //drawMap()
             print(touchedNode.position)
-        } else {
-            print("moved")
-
+        } else if let touchedNode = self.metroMapView.selectedNode as? SKLabelNode, let parentNode = touchedNode.parent {
+            let lastPosition = touchedNode.position
+            let parentPosition = parentNode.position
+            
+            let touchPosition = touch.location(in: parentNode)
+            touchedNode.position = touchPosition
+            print("Label moved from: \(lastPosition) to \(touchedNode.position)")
             //self.center.x += positionInScene.x - previousPosition.x
             //self.center.y += positionInScene.y - previousPosition.y
         }

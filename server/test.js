@@ -11,8 +11,15 @@ app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/
 app.get('/search', function (req, res) {
     console.log("search req for:", req.originalUrl)
     console.log("param:", req.query.q)
-    var searchResult = "saveTest1.json" + " " + "DefaultMapName.json" + " "+ "testfile2.json"
+    var searchResult = ""
+    fileList = fs.readdirSync(__dirname + "/MetroMap/")
+    console.log(fileList)
+    for(var i in fileList) {
+        searchResult += fileList[i] + " "
+    }
+    console.log(searchResult)
     res.send(searchResult);
+
 })
 
 app.all('/get_file/:filename', function(req,res) {

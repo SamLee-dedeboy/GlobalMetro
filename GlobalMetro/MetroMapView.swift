@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 class MetroMapView: SKView {
     //var mapInfo = [String:[MetroNode]]()
-    var selectedNode: MetroNode?
+    var selectedNode: SKNode?
     
     var selectedLine: String? {
         didSet {
@@ -87,17 +87,7 @@ extension MetroMapView {
             let touchedNodes = scene.nodes(at:touch.location(in:scene))
           
             if let touchedNode = touchedNodes.first {
-                if let touchedNode = touchedNode as? MetroNode {
-                    print("node selected")
-                    if let mvc = self.delegate as? MapViewController {
-                        mvc.highlightLine(touchedNode.metroLine)
-                    }
-                    selectedNode = touchedNode
-                    selectedLine = touchedNode.metroLine
-                    print("returning")
-                    return
-                    //TODO: delete above
-                } else if let touchedNodeInnerCircle = touchedNode as? SKShapeNode, let touchedMetroNode = touchedNodeInnerCircle.parent as? MetroNode {
+                if let touchedNodeInnerCircle = touchedNode as? SKShapeNode, let touchedMetroNode = touchedNodeInnerCircle.parent as? MetroNode {
                         print("touched metroNode: ",  touchedMetroNode)
                     if let mvc = self.delegate as? MapViewController {
                         mvc.highlightLine(touchedMetroNode.metroLine)
@@ -106,13 +96,18 @@ extension MetroMapView {
                     selectedLine = touchedMetroNode.metroLine
                     print("returning")
                     return
+                } else if let touchedLabelNode = touchedNode as? SKLabelNode {
+                    print("selected label:\(touchedLabelNode.text)")
+                    selectedNode = touchedLabelNode
+                    selectedLine = (touchedLabelNode.parent as? MetroNode)?.metroLine
+                    return
                 }
             } else {
                 print("no nodes")
             }
             if selectedNode != nil {
-                if let mvc = self.delegate as? MapViewController {
-                    mvc.deHighlightLine(selectedNode!.metroLine)
+                if let mvc = self.delegate as? MapViewController, let selectedNode = selectedNode as? MetroNode {
+                    mvc.deHighlightLine(selectedNode.metroLine)
                 }
             }
             selectedNode = nil
@@ -130,16 +125,22 @@ extension MetroMapView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch ended")
         superview?.isUserInteractionEnabled = true
-        if let selectedNode = self.selectedNode {
+        if let selectedNode = self.selectedNode as? MetroNode {
             selectedNode.coordinateInMap = selectedNode.position
+        }
+        if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
+            parentNode.labelPosition = selectedNode.position
         }
         self.selectedNode = nil
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch canceled")
         superview?.isUserInteractionEnabled = true
-        if let selectedNode = self.selectedNode {
+        if let selectedNode = self.selectedNode as? MetroNode {
             selectedNode.coordinateInMap = selectedNode.position
+        }
+        if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
+            parentNode.labelPosition = selectedNode.position
         }
         self.selectedNode = nil
     

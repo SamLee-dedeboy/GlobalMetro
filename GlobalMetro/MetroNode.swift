@@ -22,7 +22,7 @@ final class MetroNode:SKShapeNode, Codable {
     var metroLine:String
     var lineColor:UIColor = UIColor.red
     var coordinateInMap:CGPoint
-
+    var labelPosition = CGPoint.zero
     var adjacentNodes = [String]()
     var outerCircle = SKShapeNode()
     var innerCircle = SKShapeNode()
@@ -57,7 +57,7 @@ final class MetroNode:SKShapeNode, Codable {
     
         self.name = stationName
         addCircle()
-        addLabel()
+        addLabel(atPosition: self.labelPosition)
         
     }
     
@@ -81,6 +81,7 @@ final class MetroNode:SKShapeNode, Codable {
         self.metroLine = try container.decode(String.self, forKey: .metroLine)
         self.coordinateInMap = try container.decode(CGPoint.self, forKey: .coordinateInMap)
         self.adjacentNodes = try container.decode([String].self, forKey: .adjacentNodes)
+        self.labelPosition = try container.decode(CGPoint.self, forKey: .labelPosition)
         super.init()
     
         let path = CGMutablePath()
@@ -106,7 +107,7 @@ final class MetroNode:SKShapeNode, Codable {
         self.zPosition = 11
         self.name = stationName
         addCircle()
-        addLabel()
+        addLabel(atPosition: self.labelPosition)
     }
     func addCircle() {
         let outerPath = CGMutablePath()
@@ -138,9 +139,9 @@ final class MetroNode:SKShapeNode, Codable {
         self.addChild(outerCircle)
         self.addChild(innerCircle)
     }
-    func addLabel() {
+    func addLabel(atPosition position:CGPoint) {
         self.label.text = self.stationName
-        self.label.position = CGPoint.zero
+        self.label.position = position
         self.label.zPosition = self.zPosition + 1
         self.label.fontSize = 35
         self.label.fontColor = UIColor.black
@@ -155,7 +156,7 @@ extension MetroNode {
         case metroLine
         case coordinateInMap
         case adjacentNodes
-       
+        case labelPosition
     }
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -163,7 +164,7 @@ extension MetroNode {
         try container.encode(metroLine, forKey: CodingKeys.metroLine)
         try container.encode(coordinateInMap, forKey: CodingKeys.coordinateInMap)
         try container.encode(adjacentNodes, forKey: CodingKeys.adjacentNodes)
-
+        try container.encode(labelPosition, forKey: CodingKeys.labelPosition)
         //super.encode(with: encoder as! NSCoder)
     }
     

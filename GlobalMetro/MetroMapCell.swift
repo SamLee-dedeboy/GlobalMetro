@@ -9,7 +9,7 @@
 import UIKit
 
 class MetroMapCell: UITableViewCell {
-    var fileName:String? = "DefaultMapName.json"
+    var fileName:String? = "DefaultMapName"
     //var fileName:String?
     override func awakeFromNib() {
         super.awakeFromNib()

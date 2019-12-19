@@ -9,7 +9,11 @@
 import UIKit
 
 class SaveMapViewController: UIViewController {
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if let mapvc = self.popoverPresentationController?.delegate as? MapViewController {
+            self.mapNameTextField.text = mapvc.metroMap.mapName
+        }
+    }
     @IBOutlet weak var mapNameTextField: UITextField!
     
     @IBAction func SaveButtonPressed(_ sender: UIButton) {
