@@ -1,0 +1,16 @@
+PODS:
+  - EFColorPicker (5.1.0)
+
+DEPENDENCIES:
+  - EFColorPicker
+
+SPEC REPOS:
+  trunk:
+    - EFColorPicker
+
+SPEC CHECKSUMS:
+  EFColorPicker: 6fa37bd9cde0f8dc58762698f1e9809f554dfe6c
+
+PODFILE CHECKSUM: 8a21233de20570c3308738b19d41d60ed18e24c6
+
+COCOAPODS: 1.8.4

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09D332D50C7AED445971B51F /* Pods_GlobalMetro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 009A440DF08D865ABA0C5C10 /* Pods_GlobalMetro.framework */; };
 		2206CEDD2390ACBC0000525D /* CreateLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2206CEDC2390ACBC0000525D /* CreateLineViewController.swift */; };
 		22376309238EAA49003F7AF4 /* CreateNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22376308238EAA48003F7AF4 /* CreateNodeViewController.swift */; };
 		228A7C2623A7603000057C65 /* MetroMapDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2523A7603000057C65 /* MetroMapDocument.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009A440DF08D865ABA0C5C10 /* Pods_GlobalMetro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlobalMetro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2206CEDC2390ACBC0000525D /* CreateLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLineViewController.swift; sourceTree = "<group>"; };
 		22376308238EAA48003F7AF4 /* CreateNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNodeViewController.swift; sourceTree = "<group>"; };
 		228A7C2523A7603000057C65 /* MetroMapDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroMapDocument.swift; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		229AD640238D402400EC7E35 /* MetroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroNode.swift; sourceTree = "<group>"; };
 		229AD642238D404300EC7E35 /* MetroLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroLine.swift; sourceTree = "<group>"; };
 		229AD644238D410C00EC7E35 /* MetroMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroMap.swift; sourceTree = "<group>"; };
+		9E46A06BB9A9BD166C0D7260 /* Pods-GlobalMetro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalMetro.release.xcconfig"; path = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro.release.xcconfig"; sourceTree = "<group>"; };
+		AE94C26E4EB45420233B4359 /* Pods-GlobalMetro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalMetro.debug.xcconfig"; path = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +59,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D332D50C7AED445971B51F /* Pods_GlobalMetro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0388151047CB25F44EB0DA33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				009A440DF08D865ABA0C5C10 /* Pods_GlobalMetro.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		211C5255BB32488764C1CBB8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE94C26E4EB45420233B4359 /* Pods-GlobalMetro.debug.xcconfig */,
+				9E46A06BB9A9BD166C0D7260 /* Pods-GlobalMetro.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		229AD61E238D3C7700EC7E35 = {
 			isa = PBXGroup;
 			children = (
 				229AD629238D3C7700EC7E35 /* GlobalMetro */,
 				229AD628238D3C7700EC7E35 /* Products */,
+				211C5255BB32488764C1CBB8 /* Pods */,
+				0388151047CB25F44EB0DA33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 229AD63B238D3C7E00EC7E35 /* Build configuration list for PBXNativeTarget "GlobalMetro" */;
 			buildPhases = (
+				9FCBA98B1C2323A34CA87AC6 /* [CP] Check Pods Manifest.lock */,
 				229AD623238D3C7700EC7E35 /* Sources */,
 				229AD624238D3C7700EC7E35 /* Frameworks */,
 				229AD625238D3C7700EC7E35 /* Resources */,
+				5517983271B2BFAABD6EF614 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,6 +195,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5517983271B2BFAABD6EF614 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FCBA98B1C2323A34CA87AC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GlobalMetro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		229AD623238D3C7700EC7E35 /* Sources */ = {
@@ -330,6 +399,7 @@
 		};
 		229AD63C238D3C7E00EC7E35 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE94C26E4EB45420233B4359 /* Pods-GlobalMetro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -347,6 +417,7 @@
 		};
 		229AD63D238D3C7E00EC7E35 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E46A06BB9A9BD166C0D7260 /* Pods-GlobalMetro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

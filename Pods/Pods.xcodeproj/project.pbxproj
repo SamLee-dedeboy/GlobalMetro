@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21B2F5BF8E4AAE580F72DB22B13DFD4B /* EFControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EB557CCCBCCB4BEE38D2CDC8EA0D1 /* EFControl.swift */; };
+		2FD5C68BEB78435C2801F2C3F4335DA7 /* EFColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41096C431EE6EAD471256D3BC57780E7 /* EFColorWheelView.swift */; };
+		58360C2A6DD8370CE63B532962A86C28 /* EFColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE8A94524809B4732E85CCF78FB81FC /* EFColorView.swift */; };
+		5D7F3D3F52B5D12D44AF49B79BE91B6B /* EFColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3993037810695B329BFC3B0916BD7207 /* EFColorUtils.swift */; };
+		5E3FD92A4069F26516AD53747EB6BF42 /* EFSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C8738D525AC028DD5DEFC6FC63A76 /* EFSliderView.swift */; };
+		671564EDAB2CB22CA1C06BB41908BCD8 /* EFColorComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3478C7C12AE98EFA4345CE6C7F0FF /* EFColorComponentView.swift */; };
+		8866A91DF1A19A9A58ED3FF0AFF6138A /* Pods-GlobalMetro-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CF21F43007820EFB464E1AB34B6238 /* Pods-GlobalMetro-dummy.m */; };
+		94363668104D226B0F9EE1DE853C5D39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		98D6770E12918C9CD891E768C133B2AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		A9506CD722260155E3838DF80914AC13 /* Pods-GlobalMetro-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 633A08A9588433A8BD12CA361E990C3F /* Pods-GlobalMetro-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5EAD031921FA5E1A52902C753CE8A32 /* EFRGBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1968270B24C5E752ED3F3C2A593642D8 /* EFRGBView.swift */; };
+		D11276F0980922C29872C27F104A523D /* EFColorSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C67B5A265907711DB759BAFC5DBCB2 /* EFColorSelectionViewController.swift */; };
+		DB5C1ABDF1DB16B7F1BC8963A086AC40 /* EFColorPicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AE98C2191EE35C64570148B56781F1 /* EFColorPicker-dummy.m */; };
+		DE4859DD84B440FEF83FE43CF1C39092 /* EFHSBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E22CA496FE13E26CABCDDCD64D762EE /* EFHSBView.swift */; };
+		E9600CF76022F32BF6460C40A82928AF /* EFColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E1924152536CFFB0CCBDCD1DA02A7 /* EFColorSelectionView.swift */; };
+		EFB3315E266F1F38EE0BA0CC585ADC41 /* EFThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A5CB694EE6D41C451A6BF79581A04 /* EFThumbView.swift */; };
+		F73E63C40DB3360E7DA9E7FB33B77C40 /* EFColorPicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F1297C2D40E4959926EFB39BB3149CC /* EFColorPicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DB3FB4BF04947D3D68D338551A4DA8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04C4B8A82C294B3A8FCCFF8B30559381;
+			remoteInfo = EFColorPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		011E1924152536CFFB0CCBDCD1DA02A7 /* EFColorSelectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorSelectionView.swift; path = EFColorPicker/Classes/EFColorSelectionView.swift; sourceTree = "<group>"; };
+		03AE98C2191EE35C64570148B56781F1 /* EFColorPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EFColorPicker-dummy.m"; sourceTree = "<group>"; };
+		07CF21F43007820EFB464E1AB34B6238 /* Pods-GlobalMetro-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GlobalMetro-dummy.m"; sourceTree = "<group>"; };
+		0F1297C2D40E4959926EFB39BB3149CC /* EFColorPicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFColorPicker-umbrella.h"; sourceTree = "<group>"; };
+		11A3478C7C12AE98EFA4345CE6C7F0FF /* EFColorComponentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorComponentView.swift; path = EFColorPicker/Classes/EFColorComponentView.swift; sourceTree = "<group>"; };
+		172A5CB694EE6D41C451A6BF79581A04 /* EFThumbView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFThumbView.swift; path = EFColorPicker/Classes/EFThumbView.swift; sourceTree = "<group>"; };
+		1968270B24C5E752ED3F3C2A593642D8 /* EFRGBView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFRGBView.swift; path = EFColorPicker/Classes/EFRGBView.swift; sourceTree = "<group>"; };
+		1FAA28717CA81139D5E41ACBE6A69AA9 /* EFColorPicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "EFColorPicker-Info.plist"; sourceTree = "<group>"; };
+		1FE2A0F17D2706E463233AF812011101 /* Pods-GlobalMetro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GlobalMetro.debug.xcconfig"; sourceTree = "<group>"; };
+		2900682DE2E7EEDD9EDFC9BEB187642C /* Pods-GlobalMetro-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GlobalMetro-acknowledgements.plist"; sourceTree = "<group>"; };
+		30E3885F36669D3F4663883C191A4821 /* Pods-GlobalMetro-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GlobalMetro-Info.plist"; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3243E9EB4B194CE479F685A2AE561C50 /* Pods-GlobalMetro-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GlobalMetro-frameworks.sh"; sourceTree = "<group>"; };
+		3993037810695B329BFC3B0916BD7207 /* EFColorUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorUtils.swift; path = EFColorPicker/Classes/EFColorUtils.swift; sourceTree = "<group>"; };
+		41096C431EE6EAD471256D3BC57780E7 /* EFColorWheelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorWheelView.swift; path = EFColorPicker/Classes/EFColorWheelView.swift; sourceTree = "<group>"; };
+		4E338A98108D94D543EDCF2003877714 /* Pods-GlobalMetro.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GlobalMetro.modulemap"; sourceTree = "<group>"; };
+		5AB18D1D837448C4F601B85A32654769 /* EFColorPicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EFColorPicker.xcconfig; sourceTree = "<group>"; };
+		633A08A9588433A8BD12CA361E990C3F /* Pods-GlobalMetro-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GlobalMetro-umbrella.h"; sourceTree = "<group>"; };
+		67C67B5A265907711DB759BAFC5DBCB2 /* EFColorSelectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorSelectionViewController.swift; path = EFColorPicker/Classes/EFColorSelectionViewController.swift; sourceTree = "<group>"; };
+		719C8738D525AC028DD5DEFC6FC63A76 /* EFSliderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFSliderView.swift; path = EFColorPicker/Classes/EFSliderView.swift; sourceTree = "<group>"; };
+		7EE8A94524809B4732E85CCF78FB81FC /* EFColorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFColorView.swift; path = EFColorPicker/Classes/EFColorView.swift; sourceTree = "<group>"; };
+		928EB557CCCBCCB4BEE38D2CDC8EA0D1 /* EFControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFControl.swift; path = EFColorPicker/Classes/EFControl.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E22CA496FE13E26CABCDDCD64D762EE /* EFHSBView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EFHSBView.swift; path = EFColorPicker/Classes/EFHSBView.swift; sourceTree = "<group>"; };
+		A01C1915C518B43FE8EDDDDCF60E9795 /* EFColorPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = EFColorPicker.modulemap; sourceTree = "<group>"; };
+		C5FF35701F134AD7DF1A1B4129916E71 /* EFColorPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EFColorPicker.framework; path = EFColorPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE2148D320E0C335D3775523BFDCB9F /* Pods_GlobalMetro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GlobalMetro.framework; path = "Pods-GlobalMetro.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E433370449B621E48E61CB3FA32BDC10 /* Pods-GlobalMetro-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GlobalMetro-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EF01B23D785281EDD182FA0F2CC2E9D5 /* EFColorPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFColorPicker-prefix.pch"; sourceTree = "<group>"; };
+		FD25DFB147443539C5E0A0B016D3CEA7 /* Pods-GlobalMetro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GlobalMetro.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37FF2A53EB20874B980B2C7EEFE160F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94363668104D226B0F9EE1DE853C5D39 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DDDAA01DA4299F611C8389F86EEC810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98D6770E12918C9CD891E768C133B2AE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		112A56960E6452E933521B41D1625CAC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A01C1915C518B43FE8EDDDDCF60E9795 /* EFColorPicker.modulemap */,
+				5AB18D1D837448C4F601B85A32654769 /* EFColorPicker.xcconfig */,
+				03AE98C2191EE35C64570148B56781F1 /* EFColorPicker-dummy.m */,
+				1FAA28717CA81139D5E41ACBE6A69AA9 /* EFColorPicker-Info.plist */,
+				EF01B23D785281EDD182FA0F2CC2E9D5 /* EFColorPicker-prefix.pch */,
+				0F1297C2D40E4959926EFB39BB3149CC /* EFColorPicker-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/EFColorPicker";
+			sourceTree = "<group>";
+		};
+		847916852387C525CF4A01D126BB4B3F /* EFColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				11A3478C7C12AE98EFA4345CE6C7F0FF /* EFColorComponentView.swift */,
+				011E1924152536CFFB0CCBDCD1DA02A7 /* EFColorSelectionView.swift */,
+				67C67B5A265907711DB759BAFC5DBCB2 /* EFColorSelectionViewController.swift */,
+				3993037810695B329BFC3B0916BD7207 /* EFColorUtils.swift */,
+				7EE8A94524809B4732E85CCF78FB81FC /* EFColorView.swift */,
+				41096C431EE6EAD471256D3BC57780E7 /* EFColorWheelView.swift */,
+				928EB557CCCBCCB4BEE38D2CDC8EA0D1 /* EFControl.swift */,
+				9E22CA496FE13E26CABCDDCD64D762EE /* EFHSBView.swift */,
+				1968270B24C5E752ED3F3C2A593642D8 /* EFRGBView.swift */,
+				719C8738D525AC028DD5DEFC6FC63A76 /* EFSliderView.swift */,
+				172A5CB694EE6D41C451A6BF79581A04 /* EFThumbView.swift */,
+				112A56960E6452E933521B41D1625CAC /* Support Files */,
+			);
+			name = EFColorPicker;
+			path = EFColorPicker;
+			sourceTree = "<group>";
+		};
+		960A2D54DD792B824FDE3A9ADA722C97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				847916852387C525CF4A01D126BB4B3F /* EFColorPicker */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C98CA2DC36F2C7759F12D11642C5B699 /* Pods-GlobalMetro */ = {
+			isa = PBXGroup;
+			children = (
+				4E338A98108D94D543EDCF2003877714 /* Pods-GlobalMetro.modulemap */,
+				E433370449B621E48E61CB3FA32BDC10 /* Pods-GlobalMetro-acknowledgements.markdown */,
+				2900682DE2E7EEDD9EDFC9BEB187642C /* Pods-GlobalMetro-acknowledgements.plist */,
+				07CF21F43007820EFB464E1AB34B6238 /* Pods-GlobalMetro-dummy.m */,
+				3243E9EB4B194CE479F685A2AE561C50 /* Pods-GlobalMetro-frameworks.sh */,
+				30E3885F36669D3F4663883C191A4821 /* Pods-GlobalMetro-Info.plist */,
+				633A08A9588433A8BD12CA361E990C3F /* Pods-GlobalMetro-umbrella.h */,
+				1FE2A0F17D2706E463233AF812011101 /* Pods-GlobalMetro.debug.xcconfig */,
+				FD25DFB147443539C5E0A0B016D3CEA7 /* Pods-GlobalMetro.release.xcconfig */,
+			);
+			name = "Pods-GlobalMetro";
+			path = "Target Support Files/Pods-GlobalMetro";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				960A2D54DD792B824FDE3A9ADA722C97 /* Pods */,
+				EB71B4684A03F21C6F82B628678F3836 /* Products */,
+				D5A54490FC33FE792E8D9F1D440DC46F /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5A54490FC33FE792E8D9F1D440DC46F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C98CA2DC36F2C7759F12D11642C5B699 /* Pods-GlobalMetro */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EB71B4684A03F21C6F82B628678F3836 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5FF35701F134AD7DF1A1B4129916E71 /* EFColorPicker.framework */,
+				DBE2148D320E0C335D3775523BFDCB9F /* Pods_GlobalMetro.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1849A01BC16DE951EF10C0057B63BD52 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9506CD722260155E3838DF80914AC13 /* Pods-GlobalMetro-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71A67FCFAD05A21F8944FF8A1E668DFC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F73E63C40DB3360E7DA9E7FB33B77C40 /* EFColorPicker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04C4B8A82C294B3A8FCCFF8B30559381 /* EFColorPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6BED885607839A935851FDA64BB5796 /* Build configuration list for PBXNativeTarget "EFColorPicker" */;
+			buildPhases = (
+				71A67FCFAD05A21F8944FF8A1E668DFC /* Headers */,
+				6FA1588D9DDAB4CE7150443DA589E61A /* Sources */,
+				9DDDAA01DA4299F611C8389F86EEC810 /* Frameworks */,
+				42BD1CB36C0763FE808FD2145DC30F37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EFColorPicker;
+			productName = EFColorPicker;
+			productReference = C5FF35701F134AD7DF1A1B4129916E71 /* EFColorPicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8C81A38E0958B208C3252D3AB89CD303 /* Pods-GlobalMetro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F3979B1B741F78B6BCD35C20ADE43BF /* Build configuration list for PBXNativeTarget "Pods-GlobalMetro" */;
+			buildPhases = (
+				1849A01BC16DE951EF10C0057B63BD52 /* Headers */,
+				C8EC20E2204506FB554D1D8BB38155BE /* Sources */,
+				37FF2A53EB20874B980B2C7EEFE160F8 /* Frameworks */,
+				8C147A7375D2F1B5C89AF45F6B1156F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7139647D0985EF3C71A5FECB732F3A04 /* PBXTargetDependency */,
+			);
+			name = "Pods-GlobalMetro";
+			productName = "Pods-GlobalMetro";
+			productReference = DBE2148D320E0C335D3775523BFDCB9F /* Pods_GlobalMetro.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = EB71B4684A03F21C6F82B628678F3836 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04C4B8A82C294B3A8FCCFF8B30559381 /* EFColorPicker */,
+				8C81A38E0958B208C3252D3AB89CD303 /* Pods-GlobalMetro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42BD1CB36C0763FE808FD2145DC30F37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C147A7375D2F1B5C89AF45F6B1156F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FA1588D9DDAB4CE7150443DA589E61A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671564EDAB2CB22CA1C06BB41908BCD8 /* EFColorComponentView.swift in Sources */,
+				DB5C1ABDF1DB16B7F1BC8963A086AC40 /* EFColorPicker-dummy.m in Sources */,
+				E9600CF76022F32BF6460C40A82928AF /* EFColorSelectionView.swift in Sources */,
+				D11276F0980922C29872C27F104A523D /* EFColorSelectionViewController.swift in Sources */,
+				5D7F3D3F52B5D12D44AF49B79BE91B6B /* EFColorUtils.swift in Sources */,
+				58360C2A6DD8370CE63B532962A86C28 /* EFColorView.swift in Sources */,
+				2FD5C68BEB78435C2801F2C3F4335DA7 /* EFColorWheelView.swift in Sources */,
+				21B2F5BF8E4AAE580F72DB22B13DFD4B /* EFControl.swift in Sources */,
+				DE4859DD84B440FEF83FE43CF1C39092 /* EFHSBView.swift in Sources */,
+				B5EAD031921FA5E1A52902C753CE8A32 /* EFRGBView.swift in Sources */,
+				5E3FD92A4069F26516AD53747EB6BF42 /* EFSliderView.swift in Sources */,
+				EFB3315E266F1F38EE0BA0CC585ADC41 /* EFThumbView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8EC20E2204506FB554D1D8BB38155BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8866A91DF1A19A9A58ED3FF0AFF6138A /* Pods-GlobalMetro-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7139647D0985EF3C71A5FECB732F3A04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EFColorPicker;
+			target = 04C4B8A82C294B3A8FCCFF8B30559381 /* EFColorPicker */;
+			targetProxy = 3DB3FB4BF04947D3D68D338551A4DA8A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0BFDE39548403012DCA4B97E9B0E718E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD25DFB147443539C5E0A0B016D3CEA7 /* Pods-GlobalMetro.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3448DAD9392B866A9DCB97A4AEE5388C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AB18D1D837448C4F601B85A32654769 /* EFColorPicker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EFColorPicker/EFColorPicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EFColorPicker/EFColorPicker-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/EFColorPicker/EFColorPicker.modulemap";
+				PRODUCT_MODULE_NAME = EFColorPicker;
+				PRODUCT_NAME = EFColorPicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9C6385E282D39B13EEF8F79BE83856CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FE2A0F17D2706E463233AF812011101 /* Pods-GlobalMetro.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GlobalMetro/Pods-GlobalMetro.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F952B0DF9382C7987CD776EFE3EA82A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AB18D1D837448C4F601B85A32654769 /* EFColorPicker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/EFColorPicker/EFColorPicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EFColorPicker/EFColorPicker-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/EFColorPicker/EFColorPicker.modulemap";
+				PRODUCT_MODULE_NAME = EFColorPicker;
+				PRODUCT_NAME = EFColorPicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F3979B1B741F78B6BCD35C20ADE43BF /* Build configuration list for PBXNativeTarget "Pods-GlobalMetro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6385E282D39B13EEF8F79BE83856CA /* Debug */,
+				0BFDE39548403012DCA4B97E9B0E718E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
+				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6BED885607839A935851FDA64BB5796 /* Build configuration list for PBXNativeTarget "EFColorPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3448DAD9392B866A9DCB97A4AEE5388C /* Debug */,
+				F952B0DF9382C7987CD776EFE3EA82A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

@@ -60,7 +60,34 @@ final class MetroNode:SKShapeNode, Codable {
         addLabel(atPosition: self.labelPosition)
         
     }
+    init(withName name:String, inLine line:String, lineColor:UIColor, center:CGPoint) {
+
+        self.stationName = name
+        self.metroLine = line
+        self.lineColor = lineColor
+        self.coordinateInMap = center
+        
+        super.init()
+        
+
+        let path = CGMutablePath()
+        path.addArc(center: CGPoint.zero,
+            radius: 20,
+            startAngle: 0,
+            endAngle: CGFloat.pi * 2,
+            clockwise: true)
+        self.position = center
+        self.path = path
+        self.lineWidth = 1
+        self.glowWidth = 0.5
+        self.fillColor = .white
+        self.zPosition = 11
     
+        self.name = stationName
+        addCircle()
+        addLabel(atPosition: self.labelPosition)
+        
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
