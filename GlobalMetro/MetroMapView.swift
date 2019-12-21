@@ -26,7 +26,7 @@ class MetroMapView: SKView {
         }
         
     }
- 
+    var didMove = false
     /*
     func drawMap() {
         //TODO: optimized so that each line is on different layer
@@ -86,6 +86,7 @@ class MetroMapView: SKView {
 extension MetroMapView {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touch began")
+        didMove = false
         guard let touch = touches.first else {
             return
         }
@@ -128,6 +129,7 @@ extension MetroMapView {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        didMove = true
         if isEditMode {
             if let mvc = self.delegate as? MapViewController {
                 mvc.handleTouchesMoved(touches, with: event)
@@ -144,13 +146,14 @@ extension MetroMapView {
             if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
                 parentNode.labelPosition = selectedNode.position
             }
-        } else {
+        }
+        if !didMove {
             if let selectedNode = self.selectedNode as? MetroNode,
                 let mvc = self.delegate as? MapViewController {
                 mvc.showNodeDetail(selectedNode)
             }
         }
-        self.selectedNode = nil
+        //self.selectedNode = nil
 
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -162,7 +165,7 @@ extension MetroMapView {
         if let selectedNode = self.selectedNode as? SKLabelNode, let parentNode = selectedNode.parent as? MetroNode {
             parentNode.labelPosition = selectedNode.position
         }
-        self.selectedNode = nil
+        //self.selectedNode = nil
     
     }
 }

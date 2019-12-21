@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -157,9 +158,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lGn-NH-EIQ">
-                                <rect key="frame" x="20" y="108" width="312" height="50"/>
+                                <rect key="frame" x="20" y="108" width="370" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puw-RH-crO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puw-RH-crO">
                                         <rect key="frame" x="0.0" y="1" width="80" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MsF-e0-Rvj"/>
@@ -171,7 +172,7 @@
                                             <segue destination="abC-TE-cGa" kind="presentation" identifier="Create Line" id="LCT-Ap-UQS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4K-LV-zwJ">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4K-LV-zwJ">
                                         <rect key="frame" x="88" y="0.5" width="50" height="49.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="2uq-hA-2rQ"/>
@@ -184,13 +185,23 @@
                                             <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="ATi-e8-vMa" kind="popoverPresentation" identifier="Create Node" popoverAnchorView="f4K-LV-zwJ" id="nOa-st-fwp">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
-                                            </segue>
+                                            <segue destination="ATi-e8-vMa" kind="presentation" identifier="Create Node" id="nOa-st-fwp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wey-Hh-kwX">
-                                        <rect key="frame" x="146" y="-1.5" width="50" height="50.5"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgO-Nk-3vX">
+                                        <rect key="frame" x="146" y="0.5" width="50" height="49.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Dhg-7x-Kej"/>
+                                            <constraint firstAttribute="width" constant="50" id="S4r-WZ-1vy"/>
+                                        </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" backgroundImage="minus.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="deleteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KA7-Ux-YR1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wey-Hh-kwX">
+                                        <rect key="frame" x="204" y="-1.5" width="50" height="50.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Aqw-jH-PRY"/>
                                             <constraint firstAttribute="width" constant="50" id="jyT-8K-BXC"/>
@@ -204,7 +215,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sb6-Yg-tcy">
-                                        <rect key="frame" x="204" y="-2.5" width="50" height="51.5"/>
+                                        <rect key="frame" x="262" y="-2.5" width="50" height="51.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="6Ng-n5-zX0"/>
                                             <constraint firstAttribute="width" constant="50" id="EpA-B4-dLu"/>
@@ -215,8 +226,8 @@
                                             <action selector="loadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="joX-dD-gTK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7S-kk-fms">
-                                        <rect key="frame" x="262" y="-2.5" width="50" height="55"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7S-kk-fms">
+                                        <rect key="frame" x="320" y="-2.5" width="50" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="K0m-j6-hVn"/>
                                             <constraint firstAttribute="height" constant="50" id="UYR-Nt-8w8"/>
@@ -287,6 +298,7 @@
                         <outlet property="addNodeButton" destination="f4K-LV-zwJ" id="QHd-QC-qC9"/>
                         <outlet property="buttonStackView" destination="lGn-NH-EIQ" id="VUe-QS-r3C"/>
                         <outlet property="cancelEditButton" destination="mUx-w2-cmB" id="DSm-iq-pvi"/>
+                        <outlet property="deleteNodeButton" destination="TgO-Nk-3vX" id="LLg-8E-loL"/>
                         <outlet property="mapScrollView" destination="PPf-8Y-zio" id="gGO-7p-Cvf"/>
                         <outlet property="metroMapView" destination="KVd-Dh-7GK" id="8Gl-1n-p2i"/>
                         <outlet property="saveButton" destination="wey-Hh-kwX" id="7XT-lS-iuF"/>
@@ -342,7 +354,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-E3-uuz">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-E3-uuz">
                                         <rect key="frame" x="86" y="0.0" width="140" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="2LR-dp-5uf"/>
@@ -458,34 +470,119 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-Ai-4XF">
-                                <rect key="frame" x="119" y="47" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="站名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDZ-Sf-6xF">
-                                <rect key="frame" x="20" y="50" width="66" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKs-VV-aM0">
-                                <rect key="frame" x="38" y="103" width="123" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jVY-LF-R81">
+                                <rect key="frame" x="20" y="50" width="187" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="站名：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDZ-Sf-6xF">
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Fz-Ai-4XF">
+                                        <rect key="frame" x="67" y="0.0" width="120" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="0bv-Rk-jlr"/>
+                                            <constraint firstAttribute="height" constant="34" id="lRF-1O-eIt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4Fz-Ai-4XF" firstAttribute="top" secondItem="jVY-LF-R81" secondAttribute="top" id="CIc-f4-Odb"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKs-VV-aM0">
+                                <rect key="frame" x="71" y="253" width="123" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="aXY-PN-yGr"/>
+                                    <constraint firstAttribute="height" constant="93" id="gdn-hS-qaC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="save"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="ATi-e8-vMa" eventType="touchUpInside" id="9ha-u2-SeJ"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0H0-IH-ARS">
+                                <rect key="frame" x="20" y="129" width="382" height="97"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="线路：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Px-Z71">
+                                        <rect key="frame" x="0.0" y="0.0" width="52" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GIL-yl-rbZ">
+                                        <rect key="frame" x="72" y="0.0" width="310" height="97"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="310" id="WLL-wF-ebL"/>
+                                            <constraint firstAttribute="height" constant="97" id="f9G-9L-sLN"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iP6-BJ-r7g">
+                                            <size key="itemSize" width="61" height="23"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MetroLineCell" id="P25-Jn-Ijk" customClass="MetroLineCollectionViewCell" customModule="GlobalMetro" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="61" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vC2-nq-Kbc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="61" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kl7-ye-Zel">
+                                                            <rect key="frame" x="0.0" y="0.0" width="61" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="LKd-iS-rVe"/>
+                                                                <constraint firstAttribute="width" constant="61" id="ajd-Y8-HE0"/>
+                                                            </constraints>
+                                                            <state key="normal">
+                                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="metroLineButtonPressed:" destination="P25-Jn-Ijk" eventType="touchUpInside" id="NiS-ju-yje"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="Kl7-ye-Zel" secondAttribute="bottom" id="bmq-Oa-Hh0"/>
+                                                        <constraint firstItem="Kl7-ye-Zel" firstAttribute="leading" secondItem="vC2-nq-Kbc" secondAttribute="leading" id="cFj-La-bYc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Kl7-ye-Zel" secondAttribute="trailing" id="tbQ-yg-P24"/>
+                                                        <constraint firstItem="Kl7-ye-Zel" firstAttribute="top" secondItem="vC2-nq-Kbc" secondAttribute="top" id="xr5-9O-rKj"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="61" height="23"/>
+                                                <connections>
+                                                    <outlet property="metroLineButton" destination="Kl7-ye-Zel" id="7Se-QX-1GB"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="79Q-bf-YVK"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LKs-VV-aM0" firstAttribute="top" secondItem="0H0-IH-ARS" secondAttribute="bottom" constant="27" id="4zJ-iZ-2NR"/>
+                            <constraint firstItem="0H0-IH-ARS" firstAttribute="leading" secondItem="q64-lP-PZN" secondAttribute="leading" constant="20" id="DJX-ce-CWw"/>
+                            <constraint firstItem="0H0-IH-ARS" firstAttribute="top" secondItem="jVY-LF-R81" secondAttribute="bottom" constant="45" id="Eg8-Uz-5Kj"/>
+                            <constraint firstItem="LKs-VV-aM0" firstAttribute="leading" secondItem="q64-lP-PZN" secondAttribute="leading" constant="71" id="Exh-OF-7BU"/>
+                            <constraint firstItem="jVY-LF-R81" firstAttribute="leading" secondItem="q64-lP-PZN" secondAttribute="leading" constant="20" id="aRB-Od-zKC"/>
+                            <constraint firstItem="jVY-LF-R81" firstAttribute="top" secondItem="q64-lP-PZN" secondAttribute="top" constant="50" id="vsx-Su-Unm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="q64-lP-PZN"/>
                     </view>
                     <navigationItem key="navigationItem" id="B7e-iq-nus"/>
                     <connections>
+                        <outlet property="metroLineSelectionView" destination="GIL-yl-rbZ" id="2XU-PX-YFg"/>
                         <outlet property="stationNameInputField" destination="4Fz-Ai-4XF" id="8j3-GY-ss7"/>
                     </connections>
                 </viewController>
@@ -576,6 +673,7 @@
     </scenes>
     <resources>
         <image name="m.circle" catalog="system" width="64" height="62"/>
+        <image name="minus.circle" catalog="system" width="64" height="62"/>
         <image name="plus.circle" catalog="system" width="64" height="62"/>
         <image name="plus.rectangle" catalog="system" width="64" height="48"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="58" height="64"/>

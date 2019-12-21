@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import EFColorPicker
 import SpriteKit
-class CreateLineViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class CreateLineViewController: UIViewController, UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate {
     var colorSelectionController = EFColorSelectionViewController()
     lazy var navCtrl = UINavigationController(rootViewController: colorSelectionController)
     var chosenColor = UIColor.white {
@@ -74,7 +74,6 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
         }
     }
     @IBOutlet weak var lineNameTextField: UITextField!
-    @IBOutlet weak var colorTextField: UITextField!
     
     
     
@@ -82,18 +81,12 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
         self.presentingViewController?.dismiss(animated: true)
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-    
-        if let mapvc = self.popoverPresentationController?.delegate as? MapViewController {
-            if let lineName =  lineNameTextField.text, let colorName = colorTextField.text {
-                var color = UIColor.init(named:colorName)
-                print("color:", color)
-                switch lineName {
-                    case "1": color = UIColor.blue
-                    case "2": color = UIColor.red
-                    default: color = UIColor.blue
-                }
-                mapvc.createLine(lineName, color!)
+        if let mapvc = self.presentationController?.delegate as? MapViewController {
+            if let lineName =  lineNameTextField.text {
+                mapvc.createLine(lineName, self.chosenColor)
             }
+        } else {
+            print("VC casting failed: \(self.presentationController?.delegate)")
         }
         self.presentingViewController?.dismiss(animated: true)
     }

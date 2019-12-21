@@ -27,7 +27,7 @@ final class MetroNode:SKShapeNode, Codable {
     var outerCircle = SKShapeNode()
     var innerCircle = SKShapeNode()
     var label = SKLabelNode()
-    
+    /*
     init(withName name:String, inLine line:String, center:CGPoint) {
 
         self.stationName = name
@@ -60,6 +60,7 @@ final class MetroNode:SKShapeNode, Codable {
         addLabel(atPosition: self.labelPosition)
         
     }
+ */
     init(withName name:String, inLine line:String, lineColor:UIColor, center:CGPoint) {
 
         self.stationName = name
@@ -109,6 +110,9 @@ final class MetroNode:SKShapeNode, Codable {
         self.coordinateInMap = try container.decode(CGPoint.self, forKey: .coordinateInMap)
         self.adjacentNodes = try container.decode([String].self, forKey: .adjacentNodes)
         self.labelPosition = try container.decode(CGPoint.self, forKey: .labelPosition)
+        let colorData = try container.decode(Data.self, forKey: .lineColor)
+        self.lineColor = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(colorData) as? UIColor ?? UIColor.black
+        
         super.init()
     
         let path = CGMutablePath()
@@ -120,11 +124,7 @@ final class MetroNode:SKShapeNode, Codable {
                         endAngle: CGFloat.pi * 2,
                         clockwise: true)
         */
-        switch metroLine {
-        case "1": self.lineColor = UIColor.blue
-        case "2": self.lineColor = UIColor.red
-        default: self.lineColor = UIColor.blue
-        }
+        
         self.position = self.coordinateInMap
         
         self.path = path
@@ -184,6 +184,7 @@ extension MetroNode {
         case coordinateInMap
         case adjacentNodes
         case labelPosition
+        case lineColor
     }
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -193,6 +194,8 @@ extension MetroNode {
         try container.encode(adjacentNodes, forKey: CodingKeys.adjacentNodes)
         try container.encode(labelPosition, forKey: CodingKeys.labelPosition)
         //super.encode(with: encoder as! NSCoder)
+        let colorData = try NSKeyedArchiver.archivedData(withRootObject: lineColor, requiringSecureCoding: false)
+        try container.encode(colorData, forKey: .lineColor)
     }
     
 

@@ -36,21 +36,30 @@ class MetroMap: Codable {
         mapName = filename
         lines = [MetroLine]()
     }
-    func addNewNode(inLine lineName:String, naming nodeName: String) {
-        print("adding node in line: \(lineName)")
-        var node = MetroNode(withName: nodeName, inLine: lineName, center: CGPoint.zero)
-        for line in lines {
-            if line.lineName == lineName {
+    func addNewNode(inLines lineList:[String], naming nodeName: String) {
+        print("adding node in line: \(lineList)")
+        var node = MetroNode(withName: nodeName, center: CGPoint.zero)
+        for lineName in lineList {
+            if let line = self.getLineByName(lineName) {
                 if let lastNode = line.stations.last {
                     lastNode.adjacentNodes.append(node.stationName)
                     node.adjacentNodes.append(lastNode.stationName)
                 }
                 line.stations.append(node);
+                node.addLine(line)
                 print("added node: \(nodeName)")
-
+                printLines()
             }
         }
-        printLines()
+    }
+    func removeNode(_ node:MetroNode) {
+        for line in lines {
+            if line.lineName == node.metroLine {
+                if let index = line.stations.firstIndex(of: node) {
+                    line.stations.remove(at: index)
+                }
+            }
+        }
     }
     func addNewLine(lineName: String, color: UIColor) {
         lines.append(MetroLine(lineName, color))

@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate {
+class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate, UIAdaptivePresentationControllerDelegate {
     var metroMap = MetroMap()
    
     func showNodeDetail(_ node: MetroNode) {
@@ -29,8 +29,10 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
             if let metroMapView = self.metroMapView {
                 if metroMapView.selectedLine == nil {
                     addNodeButton.isEnabled = false
+                    deleteNodeButton.isEnabled = false
                 } else {
                     addNodeButton.isEnabled = true
+                    deleteNodeButton.isEnabled = true
                 }
                 print("selectedLine didSet: \(metroMapView.selectedLine)")
 
@@ -41,12 +43,10 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Create Node" {
-        
             if let cnvc = segue.destination as? CreateNodeViewController {
-                if let ppc = cnvc.popoverPresentationController {
-                    ppc.sourceRect = addNodeButton.frame
-                    ppc.delegate = self
-                    cnvc.preferredContentSize = CGSize(width: 250, height: 500)
+                if let pvc = cnvc.presentationController {
+                    pvc.delegate = self
+                    cnvc.metroLineList = metroMap.lines
                 }
             }
             return
@@ -54,10 +54,8 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
         
         if segue.identifier == "Create Line" {
             if let clvc = segue.destination as? CreateLineViewController {
-                if let ppc = clvc.popoverPresentationController {
-                    ppc.sourceRect = addLineButton.frame
-                    ppc.delegate = self
-                    clvc.preferredContentSize = CGSize(width: 250, height:500)
+                if let pvc = clvc.presentationController {
+                    pvc.delegate = self
                 }
             }
             return
@@ -112,6 +110,8 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     // MARK: button outlet
     @IBOutlet weak var addLineButton: UIButton!
     @IBOutlet weak var addNodeButton: UIButton!
+    
+    @IBOutlet weak var deleteNodeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var buttonStackView: UIStackView!
     
@@ -168,14 +168,16 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
         metroMapView.drawNode(MetroNode(withName: "4", inLine: "2", center:CGPoint(x:0.5,y:0.5)))
  */
     }
-    func createNode(_ name: String) {
-        
-        if let selectedLine = self.metroMapView.selectedLine {
-            print("pressed")
-            metroMap.addNewNode(inLine: selectedLine, naming:name)
-            drawNode(metroMap.getNodeByName(name)!)
-        
+    func createNode(_ name: String, _ lines:[String]) {
+        if lines.count == 0 {
+            if let selectedLine = self.metroMapView.selectedLine {
+                metroMap.addNewNode(inLines: [selectedLine], naming:name)
+            }
+        } else {
+            metroMap.addNewNode(inLines: lines, naming:name)
         }
+        drawNode(metroMap.getNodeByName(name)!)
+        
     }
     func createLine(_ name:String, _ color:UIColor) {
         metroMap.addNewLine(lineName: name, color: color)
@@ -250,6 +252,16 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate 
     @IBAction func cancelEditButtonPressed(_ sender: UIBarButtonItem) {
         self.metroMapView.isEditMode = false
     }
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        if let  selectedNode = self.metroMapView.selectedNode as? MetroNode {
+            
+            self.metroMap.removeNode(selectedNode)
+           removeNodeFromView(selectedNode)
+        } else {
+            print(self.metroMapView.selectedNode)
+        }
+        
+    }
 }
 // MARK: popover extension
 extension MapViewController: UIPopoverPresentationControllerDelegate {
@@ -296,7 +308,7 @@ extension MapViewController {
             return
         }
                         
-        if let touchedNode = self.metroMapView.selectedNode as? MetroNode{
+        if let touchedNode = self.metroMapView.selectedNode as? MetroNode {
             let lastPosition = touchedNode.position
             touchedNode.position = touch.location(in: self.metroMapView.scene!)
             print("node moved from \(lastPosition) to \(touchedNode.position)")
@@ -473,6 +485,24 @@ extension MapViewController {
                                        
                     }
 
+                }
+            }
+        }
+    }
+    func removeNodeFromView(_ node: MetroNode) {
+        if let scene = self.metroMapView.scene {
+            //remove Node
+            scene.removeChildren(in: [node])
+            //remove Line
+            for adjacentNodeName in node.adjacentNodes {
+                if let adjacentNode = metroMap.getNodeByName(adjacentNodeName) {
+                    scene.removeChildren(in:[
+                        (scene.childNode(withName:
+                            node.stationName + "-" + adjacentNode.stationName))
+                            ??
+                            (scene.childNode(withName:
+                                adjacentNode.stationName + "-" + node.stationName))!
+                        ])
                 }
             }
         }
