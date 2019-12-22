@@ -36,9 +36,9 @@ class MetroMap: Codable {
         mapName = filename
         lines = [MetroLine]()
     }
-    func addNewNode(inLines lineList:[String], naming nodeName: String) {
+    func addNewNode(inLines lineList:[String], naming nodeName: String, _ info:String) {
         print("adding node in line: \(lineList)")
-        var node = MetroNode(withName: nodeName, center: CGPoint.zero)
+        var node = MetroNode(withName: nodeName, center: CGPoint.zero, info)
         for lineName in lineList {
             if let line = self.getLineByName(lineName) {
                 if let lastNode = line.stations.last {
@@ -46,13 +46,35 @@ class MetroMap: Codable {
                     node.adjacentNodes.append(lastNode.stationName)
                 }
                 line.stations.append(node);
-                node.addLine(line)
+                node.addToLine(lineName, line.color)
                 print("added node: \(nodeName)")
                 printLines()
             }
         }
     }
-    func removeNode(_ node:MetroNode) {
+    func removeNode(_ node:MetroNode) ->[[MetroNode]]? {
+        var toBeConnectedNodes = [[MetroNode]]()
+        for lineName in node.metroLine {
+            if let line = getLineByName(lineName),
+                let index = line.stations.firstIndex(of:node) {
+                if index != 0 && index != line.stations.count - 1{
+                    toBeConnectedNodes.append([line.stations[index-1], line.stations[index+1]])
+                }
+                line.stations.remove(at:index)
+            }
+        }
+        for adjacentNodeName in node.adjacentNodes {
+            if let adjacentNode = self.getNodeByName(adjacentNodeName),
+                let index = adjacentNode.adjacentNodes.firstIndex(of: node.stationName) {
+                adjacentNode.adjacentNodes.remove(at:index)
+            }
+        }
+        if toBeConnectedNodes.count == 0 {
+            return nil
+        } else {
+            return toBeConnectedNodes
+        }
+        /*
         for line in lines {
             if line.lineName == node.metroLine {
                 if let index = line.stations.firstIndex(of: node) {
@@ -60,6 +82,7 @@ class MetroMap: Codable {
                 }
             }
         }
+         */
     }
     func addNewLine(lineName: String, color: UIColor) {
         lines.append(MetroLine(lineName, color))

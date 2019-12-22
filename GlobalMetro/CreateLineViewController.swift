@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import EFColorPicker
 import SpriteKit
-class CreateLineViewController: UIViewController, UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate {
+class CreateLineViewController: UIViewController, UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MyColorViewControllerDelegate {
     var colorSelectionController = EFColorSelectionViewController()
     lazy var navCtrl = UINavigationController(rootViewController: colorSelectionController)
     var chosenColor = UIColor.white {
@@ -57,8 +57,9 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
     override func viewDidAppear(_ animated: Bool) {
         self.chosenColor = UIColor.blue
     }
-    @IBOutlet weak var colorView: SKView! {
+    @IBOutlet weak var colorView: myColorView! {
         didSet {
+            colorView.myDelegate = self
             let scene = SKScene(size: colorView.bounds.size)
             scene.backgroundColor = UIColor.white
             scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -91,7 +92,14 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
         self.presentingViewController?.dismiss(animated: true)
     }
     @IBAction func chooseColorButtonPressed(_ sender: UIButton) {
-
+        showColorPicker(sender)
+        
+    }
+    @objc func dismissColorSelector(sender: UIButton) {
+        self.colorSelectionController.presentingViewController?.dismiss(animated: true)
+        self.chosenColor = self.colorSelectionController.color
+    }
+    func showColorPicker(_ sender: UIView) {
         navCtrl.navigationBar.backgroundColor = UIColor.white
         navCtrl.navigationBar.isTranslucent = false
         navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -116,10 +124,6 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
         }
         self.present(navCtrl, animated: true, completion: nil)
     }
-    @objc func dismissColorSelector(sender: UIButton) {
-        self.colorSelectionController.presentingViewController?.dismiss(animated: true)
-        self.chosenColor = self.colorSelectionController.color
-    }
 }
 extension CreateLineViewController: EFColorSelectionViewControllerDelegate  {
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
@@ -128,4 +132,3 @@ extension CreateLineViewController: EFColorSelectionViewControllerDelegate  {
         //print("New color: " + color.debugDescription)
     }
 }
-

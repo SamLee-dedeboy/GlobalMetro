@@ -17,6 +17,8 @@
 		228A7C2E23AB6E3000057C65 /* LocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2D23AB6E3000057C65 /* LocalFileViewController.swift */; };
 		228A7C3023ABAE9100057C65 /* ShowNodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C2F23ABAE9100057C65 /* ShowNodeDetailViewController.swift */; };
 		228A7C3223ADE6DB00057C65 /* MetroLineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C3123ADE6DB00057C65 /* MetroLineCollectionViewCell.swift */; };
+		228A7C3423AF155C00057C65 /* myColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C3323AF155C00057C65 /* myColorView.swift */; };
+		228A7C3623AF16FA00057C65 /* MyColorViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A7C3523AF16FA00057C65 /* MyColorViewControllerDelegate.swift */; };
 		229AD62B238D3C7700EC7E35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62A238D3C7700EC7E35 /* AppDelegate.swift */; };
 		229AD62D238D3C7700EC7E35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */; };
 		229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229AD62E238D3C7700EC7E35 /* MapViewController.swift */; };
@@ -40,6 +42,8 @@
 		228A7C2D23AB6E3000057C65 /* LocalFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileViewController.swift; sourceTree = "<group>"; };
 		228A7C2F23ABAE9100057C65 /* ShowNodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNodeDetailViewController.swift; sourceTree = "<group>"; };
 		228A7C3123ADE6DB00057C65 /* MetroLineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroLineCollectionViewCell.swift; sourceTree = "<group>"; };
+		228A7C3323AF155C00057C65 /* myColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColorView.swift; sourceTree = "<group>"; };
+		228A7C3523AF16FA00057C65 /* MyColorViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColorViewControllerDelegate.swift; sourceTree = "<group>"; };
 		229AD627238D3C7700EC7E35 /* GlobalMetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalMetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229AD62A238D3C7700EC7E35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229AD62C238D3C7700EC7E35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				228A7C2D23AB6E3000057C65 /* LocalFileViewController.swift */,
 				228A7C2F23ABAE9100057C65 /* ShowNodeDetailViewController.swift */,
 				228A7C3123ADE6DB00057C65 /* MetroLineCollectionViewCell.swift */,
+				228A7C3323AF155C00057C65 /* myColorView.swift */,
+				228A7C3523AF16FA00057C65 /* MyColorViewControllerDelegate.swift */,
 			);
 			path = GlobalMetro;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				228A7C2C23AA11FD00057C65 /* SaveMapViewController.swift in Sources */,
+				228A7C3423AF155C00057C65 /* myColorView.swift in Sources */,
 				229AD62F238D3C7700EC7E35 /* MapViewController.swift in Sources */,
 				228A7C3023ABAE9100057C65 /* ShowNodeDetailViewController.swift in Sources */,
 				228A7C2823A8EC7500057C65 /* SearchViewController.swift in Sources */,
@@ -253,6 +260,7 @@
 				22376309238EAA49003F7AF4 /* CreateNodeViewController.swift in Sources */,
 				228A7C3223ADE6DB00057C65 /* MetroLineCollectionViewCell.swift in Sources */,
 				2206CEDD2390ACBC0000525D /* CreateLineViewController.swift in Sources */,
+				228A7C3623AF16FA00057C65 /* MyColorViewControllerDelegate.swift in Sources */,
 				228A7C2E23AB6E3000057C65 /* LocalFileViewController.swift in Sources */,
 				229AD63F238D3CC400EC7E35 /* MetroMapView.swift in Sources */,
 				228A7C2A23A911D200057C65 /* MetroMapCell.swift in Sources */,

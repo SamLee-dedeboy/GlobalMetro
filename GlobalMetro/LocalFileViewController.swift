@@ -14,7 +14,8 @@ class LocalFileViewController: UITableViewController {
         super.viewDidLoad()
         
     }
-    override func viewWillLayoutSubviews() {
+    override func viewWillAppear(_ animated: Bool) {
+        print("view will appear!")
         if let url = try? FileManager.default.url(
             for:.documentDirectory,
             in:.userDomainMask,
@@ -36,6 +37,9 @@ class LocalFileViewController: UITableViewController {
                 print("failed to get items with error: \(error)")
             }
         }
+    }
+    override func viewWillLayoutSubviews() {
+        
     }
     // MARK: - Table view data source
 

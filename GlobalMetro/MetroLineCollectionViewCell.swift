@@ -14,17 +14,27 @@ class MetroLineCollectionViewCell: UICollectionViewCell {
             self.metroLineButton.setTitle(buttonText, for: UIControl.State.normal)
         }
     }
-    var lineSelected = false
+    var lineSelected = false {
+        didSet {
+            if let cnvc = (self.superview as? UICollectionView)?.delegate as? CreateNodeViewController {
+                if lineSelected {
+                    metroLineButton.backgroundColor = self.buttonColor
+                    cnvc.addSelectedLine(self.buttonText)
+                } else {
+                    metroLineButton.backgroundColor = UIColor.white
+                    cnvc.deleteSelectedLine(self.buttonText)
+                }
+            }
+        }
+    }
+    
     var buttonColor = UIColor.red
     @IBOutlet weak var metroLineButton: UIButton!
     @IBAction func metroLineButtonPressed(_ sender: UIButton) {
-        if !lineSelected {
-            metroLineButton.backgroundColor = self.buttonColor
-            if let cnvc = self.superView?.delegate as? CreateNodeViewController {
-                cnvc.addCreatingNodeToLine(self.buttonText)
-            }
-        } else {
-            metroLineButton.backgroundColor = UIColor.white
-        }
+        lineSelected = !lineSelected
+    }
+    func highlightCell() {
+        lineSelected = true
+        metroLineButton.backgroundColor = self.buttonColor
     }
 }

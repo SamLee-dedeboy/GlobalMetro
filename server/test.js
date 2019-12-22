@@ -15,7 +15,11 @@ app.get('/search', function (req, res) {
     fileList = fs.readdirSync(__dirname + "/MetroMap/")
     console.log(fileList)
     for(var i in fileList) {
-        searchResult += fileList[i] + " "
+        console.log(fileList[i].match(req.query.q))
+        if (fileList[i].toLowerCase().match(req.query.q.toLowerCase())) {
+            console.log("match found")
+            searchResult += fileList[i] + " "
+        }
     }
     console.log(searchResult)
     res.send(searchResult);

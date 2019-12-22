@@ -24,17 +24,17 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
             self.editButtonItem.isEnabled = true
         }
     }
-    func selectedLineDidChange() {
+    func selectedNodeDidChange() {
         if self.metroMapView.isEditMode {
             if let metroMapView = self.metroMapView {
-                if metroMapView.selectedLine == nil {
-                    addNodeButton.isEnabled = false
+                if metroMapView.selectedNode == nil {
+                    //addNodeButton.isEnabled = false
                     deleteNodeButton.isEnabled = false
                 } else {
-                    addNodeButton.isEnabled = true
+                    //addNodeButton.isEnabled = true
                     deleteNodeButton.isEnabled = true
                 }
-                print("selectedLine didSet: \(metroMapView.selectedLine)")
+                print("selectedNode didSet: \(metroMapView.selectedNode)")
 
             }
         }
@@ -47,6 +47,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
                 if let pvc = cnvc.presentationController {
                     pvc.delegate = self
                     cnvc.metroLineList = metroMap.lines
+                    cnvc.isCreateMode = true
                 }
             }
             return
@@ -64,8 +65,8 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
         if segue.identifier == "Save Map" {
             if let smvc = segue.destination as? SaveMapViewController {
                 if let ppc = smvc.popoverPresentationController {
-                    ppc.sourceRect = saveButton.frame
-                  
+                    ppc.sourceRect = saveButton.bounds
+                    ppc.permittedArrowDirections = UIPopoverArrowDirection.up
                     ppc.delegate = self
                     smvc.preferredContentSize = CGSize(width:250, height:500)
                 }
@@ -73,10 +74,14 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
         }
         
         if segue.identifier == "Show Node Detail" {
-            if let sndvc = segue.destination as? ShowNodeDetailViewController,
-                let presentedNode = sender as? MetroNode {
-                sndvc.presentedNode = presentedNode
-                
+            if let cnvc = segue.destination as? CreateNodeViewController,
+                let presentedNode = sender as? MetroNode, let pvc = cnvc.presentationController {
+                pvc.delegate = self
+                cnvc.presentedNode = presentedNode
+                cnvc.isViewOnlyMode = !self.metroMapView.isEditMode
+                cnvc.isEditMode = self.metroMapView.isEditMode
+                cnvc.metroLineList = metroMap.lines
+
             }
         }
     }
@@ -136,6 +141,9 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
     }
     override func viewDidAppear(_ animated: Bool) {
         drawMap()
+        if metroMap.lines.count > 0 {
+            self.addNodeButton.isEnabled = true
+        }
         //self.toolBar.isHidden = true
     }
     override func viewDidLoad() {
@@ -143,7 +151,9 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
         // Do any additional setup after loading the view.
         //metroMapView.frame = CGRect(x: 0, y: 0, width: 1200, height: 800)
 
-    
+        
+        
+        
 
 
         
@@ -168,20 +178,46 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
         metroMapView.drawNode(MetroNode(withName: "4", inLine: "2", center:CGPoint(x:0.5,y:0.5)))
  */
     }
-    func createNode(_ name: String, _ lines:[String]) {
+    func createNode(_ name: String, _ lines:[String], _ info:String, atPosition position:CGPoint = CGPoint.zero) {
         if lines.count == 0 {
-            if let selectedLine = self.metroMapView.selectedLine {
-                metroMap.addNewNode(inLines: [selectedLine], naming:name)
+            if let tmpLine = metroMap.lines.first?.lineName {
+                metroMap.addNewNode(inLines: [tmpLine], naming:name, info)
             }
         } else {
-            metroMap.addNewNode(inLines: lines, naming:name)
+            metroMap.addNewNode(inLines: lines, naming:name, info)
         }
+        metroMap.getNodeByName(name)?.position = position
         drawNode(metroMap.getNodeByName(name)!)
         
     }
+    func editNode(_ node:MetroNode, _ newName:String, _ newLines:[String], _ newInfo: String) {
+        let previousPosition = node.position
+        let previousLabelPosition = node.labelPosition
+        deleteNode(node)
+        createNode(newName, newLines, newInfo, atPosition:previousPosition)
+        if let editedNode = metroMap.getNodeByName(newName) {
+            editedNode.label.position = previousLabelPosition
+            editedNode.labelPosition = previousLabelPosition
+        }
+    }
+    func deleteNode(_ node:MetroNode) {
+        if let toBeConnectedNodes = self.metroMap.removeNode(node) {
+            for nodePair in toBeConnectedNodes {
+                nodePair[0].adjacentNodes.append(nodePair[1].stationName)
+                nodePair[1].adjacentNodes.append(nodePair[0].stationName)
+                drawLineBetweenNode(onScene: self.metroMapView.scene!, nodePair[0], nodePair[1])
+            }
+        }
+        
+        removeNodeFromView(node)
+        self.metroMapView.selectedNode = nil
+
+    }
     func createLine(_ name:String, _ color:UIColor) {
         metroMap.addNewLine(lineName: name, color: color)
-        self.metroMapView.selectedLine = name
+        //self.metroMapView.selectedLine = name
+        self.addNodeButton.isEnabled = true
+
     }
 
     func saveMap(withName mapName:String) {
@@ -254,9 +290,7 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
     }
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         if let  selectedNode = self.metroMapView.selectedNode as? MetroNode {
-            
-            self.metroMap.removeNode(selectedNode)
-           removeNodeFromView(selectedNode)
+            deleteNode(selectedNode)
         } else {
             print(self.metroMapView.selectedNode)
         }
@@ -309,6 +343,7 @@ extension MapViewController {
         }
                         
         if let touchedNode = self.metroMapView.selectedNode as? MetroNode {
+            print(touchedNode.position)
             let lastPosition = touchedNode.position
             touchedNode.position = touch.location(in: self.metroMapView.scene!)
             print("node moved from \(lastPosition) to \(touchedNode.position)")
@@ -368,27 +403,27 @@ extension MapViewController {
 extension MapViewController {
     func drawNode(_ node:MetroNode) {
         print("darwing node on \(node.position)")
-        if let line = metroMap.getLineByName(node.metroLine) {
-            if line.stations.count >= 1 {
-                print("add1")
-                self.metroMapView.scene!.addChild(node)
+        self.metroMapView.scene!.addChild(node)
+        for child in self.metroMapView.scene!.children {
+            print(child.name, child.position)
+        }
+        //draw Line
+        for lineName in node.metroLine {
+            if let line = metroMap.getLineByName(lineName) {
+                if line.stations.count >= 2 {
 
-                for adjacentNodeName in node.adjacentNodes {
-                    if let adjacentNode = metroMap.getNodeByName(adjacentNodeName) {
-                        if noLineBetweenNode(node, adjacentNode) {
-                            drawLineBetweenNode(onScene: self.metroMapView.scene!, node, adjacentNode)
+                    for adjacentNodeName in node.adjacentNodes {
+                        if let adjacentNode = metroMap.getNodeByName(adjacentNodeName) {
+                            if noLineBetweenNode(node, adjacentNode) {
+                                drawLineBetweenNode(onScene: self.metroMapView.scene!, node, adjacentNode)
+                            }
                         }
+                        
                     }
-                    
-                }
 
-            } else {
-                print("add2")
-                //line.stations.append(node)
-                self.metroMapView.scene!.addChild(node)
-                //self.presentScene(self.scene!)
+                } 
+                //highlightNode(node, onScene: self.metroMapView.scene!)
             }
-            highlightNode(node, onScene: self.metroMapView.scene!)
         }
     }
     func drawLineBetweenNode(onScene scene:SKScene, _ src:MetroNode, _ dst:MetroNode) {
@@ -400,13 +435,23 @@ extension MapViewController {
         line.name = src.stationName + "-" + dst.stationName
         line.lineWidth = 40
         line.glowWidth = 0.5
-        line.strokeColor = src.lineColor
+        line.strokeColor = mutualLineColor(between:src, and: dst) ?? UIColor.black
         //line.strokeColor = UIColor.blue
         line.zPosition = src.zPosition - 1
         scene.addChild(line)
-        print("addNewLine:\(src.position), \(dst.position)")
-        print(scene.children)
+        print("addNewLine:\(line.name), \(src.position), \(dst.position)")
+        //print(scene.children)
         //self.presentScene(scene)
+    }
+    func mutualLineColor(between src:MetroNode, and dst: MetroNode) -> UIColor?{
+        for srcColor in src.lineColor {
+            for dstColor in dst.lineColor {
+                if srcColor == dstColor {
+                    return srcColor
+                }
+            }
+        }
+        return nil
     }
     func highlightLine(_ lineName: String) {
         if let scene = self.metroMapView.scene {
@@ -460,17 +505,20 @@ extension MapViewController {
     }
     func drawMap() {
         print("drawing Map")
+        var crossNodes = [String]()
         if let scene = self.metroMapView.scene {
             //draw Nodes
             for line in metroMap.lines {
                 for node in line.stations {
-                    node.name = node.stationName
-                    if node.name == "123" {
-                      //  node.position = CGPoint(x: 100, y: 100)
+                    if !crossNodes.contains(node.stationName) {
+                        node.name = node.stationName
+                        scene.addChild(node)
+                        //highlightNode(node, onScene: scene)
+                        print("added Node on :",node.position )
+                        if node.metroLine.count > 1 {
+                            crossNodes.append(node.stationName)
+                        }
                     }
-                    scene.addChild(node)
-                    highlightNode(node, onScene: scene)
-                    print("added Node on :",node.position )
                 }
             }
             //draw Lines
