@@ -124,6 +124,7 @@ class SearchViewController: UITableViewController {
     }
     func search(for param:String?) {
         self.searchResult.removeAll()
+        self.searchResult.append("Empty")
         if let url = URL(string: serverURL + "/search?q=" + (param ??  "")) {
             print(url)
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
