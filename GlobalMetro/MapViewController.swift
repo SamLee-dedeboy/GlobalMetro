@@ -10,12 +10,17 @@ import UIKit
 import SpriteKit
 class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate, UIAdaptivePresentationControllerDelegate {
     var metroMap = MetroMap()
-   
+    func checkStationName(_ name:String) -> Bool {
+        return metroMap.checkStationName(name)
+    }
     func showNodeDetail(_ node: MetroNode) {
         performSegue(withIdentifier: "Show Node Detail", sender: node)
     }
     func editModeDidChange() {
-        buttonStackView.isHidden = !self.metroMapView.isEditMode
+        
+        
+        //buttonStackView.isHidden = !self.metroMapView.isEditMode
+        
         if self.metroMapView.isEditMode {
             self.cancelEditButton.isEnabled = true
             self.editButtonItem.isEnabled = false
@@ -283,9 +288,28 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
         task.resume()
     }
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        self.buttonStackView.alpha = 0
+        UIView.transition(with: buttonStackView,
+          duration: 0.6,
+          options: [.transitionFlipFromRight],
+          animations: {
+            self.buttonStackView.alpha = 1
+            self.buttonStackView.isHidden = false
+        },
+          completion: {_ in print("appear")})
         self.metroMapView.isEditMode = true
     }
     @IBAction func cancelEditButtonPressed(_ sender: UIBarButtonItem) {
+        self.buttonStackView.alpha = 1
+        UIView.transition(with: buttonStackView,
+          duration: 0.6,
+          options: [.transitionFlipFromRight],
+          animations: {
+            self.buttonStackView.alpha = 0
+            self.buttonStackView.isHidden = true
+        },
+          completion: {_ in print("hide")})
+    
         self.metroMapView.isEditMode = false
     }
     @IBAction func deleteButtonPressed(_ sender: UIButton) {

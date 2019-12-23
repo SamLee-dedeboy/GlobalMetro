@@ -85,14 +85,40 @@ class CreateNodeViewController:  UIViewController, UICollectionViewDataSource, U
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let mapvc = self.presentationController?.delegate as? MapViewController {
             if let stationName =  stationNameInputField.text {
-                if isEditMode, let presentedNode = self.presentedNode {
-                    mapvc.editNode(presentedNode, stationName, selectedLineList, descriptionTextView.text)
+                if mapvc.checkStationName(stationName) {
+                    if selectedLineList.isEmpty {
+                        var alert = UIAlertController (
+                                title:"MetroLine Not Selected",
+                                message:"Please select a line for this station",
+                                preferredStyle: .alert
+                            )
+                            alert.addAction(UIAlertAction(
+                                title:"OK",
+                                style:.default))
+                            present(alert, animated:true, completion:nil)
+                            return
+                    }
+                    
+                    if isEditMode, let presentedNode = self.presentedNode {
+                        mapvc.editNode(presentedNode, stationName, selectedLineList, descriptionTextView.text)
+                    } else {
+                        mapvc.createNode(stationName, selectedLineList, descriptionTextView.text)
+                    }
+                    self.presentingViewController?.dismiss(animated: true)
                 } else {
-                    mapvc.createNode(stationName, selectedLineList, descriptionTextView.text)
+                    var alert = UIAlertController (
+                        title:"Station Name Exists",
+                        message:"Please enter another Station Name",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(
+                        title:"OK",
+                        style:.default))
+                    present(alert, animated:true, completion:nil)
                 }
             }
         }
-        self.presentingViewController?.dismiss(animated: true)
+        
     }
     @IBOutlet weak var metroLineSelectionView: UICollectionView! {
         didSet {
