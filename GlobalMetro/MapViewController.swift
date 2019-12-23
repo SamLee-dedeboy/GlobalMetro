@@ -13,6 +13,9 @@ class MapViewController: UIViewController, SKViewDelegate, UIScrollViewDelegate,
     func checkStationName(_ name:String) -> Bool {
         return metroMap.checkStationName(name)
     }
+    func checkLineName(_ name:String) -> Bool {
+        return metroMap.checkLineName(name)
+    }
     func showNodeDetail(_ node: MetroNode) {
         performSegue(withIdentifier: "Show Node Detail", sender: node)
     }

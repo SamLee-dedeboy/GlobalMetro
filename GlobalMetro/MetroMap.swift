@@ -122,6 +122,14 @@ class MetroMap: Codable {
         }
         return true
     }
+    func checkLineName(_ name:String) -> Bool {
+        for line in lines {
+            if line.lineName == name {
+                return false
+            }
+        }
+        return true
+    }
     func printLines() {
         do {
             let encoder = JSONEncoder()

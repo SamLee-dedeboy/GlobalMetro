@@ -84,27 +84,25 @@ class CreateNodeViewController:  UIViewController, UICollectionViewDataSource, U
     }
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let mapvc = self.presentationController?.delegate as? MapViewController {
-            if let stationName =  stationNameInputField.text {
-                if mapvc.checkStationName(stationName) {
-                    if selectedLineList.isEmpty {
-                        var alert = UIAlertController (
-                                title:"MetroLine Not Selected",
-                                message:"Please select a line for this station",
-                                preferredStyle: .alert
-                            )
-                            alert.addAction(UIAlertAction(
-                                title:"OK",
-                                style:.default))
-                            present(alert, animated:true, completion:nil)
-                            return
-                    }
-                    
-                    if isEditMode, let presentedNode = self.presentedNode {
+            if let stationName = stationNameInputField.text, !stationName.isEmpty {
+                if selectedLineList.isEmpty {
+                    var alert = UIAlertController (
+                        title:"Metro Line Not Selected",
+                        message:"Please select a metro line",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(
+                        title:"OK",
+                        style:.default))
+                    present(alert, animated:true, completion:nil)
+                } else if isEditMode, let presentedNode = self.presentedNode {
                         mapvc.editNode(presentedNode, stationName, selectedLineList, descriptionTextView.text)
-                    } else {
-                        mapvc.createNode(stationName, selectedLineList, descriptionTextView.text)
-                    }
-                    self.presentingViewController?.dismiss(animated: true)
+                        self.presentingViewController?.dismiss(animated: true)
+                        return
+                } else if mapvc.checkStationName(stationName) {
+                            mapvc.createNode(stationName, selectedLineList, descriptionTextView.text)
+                            self.presentingViewController?.dismiss(animated: true)
+                    
                 } else {
                     var alert = UIAlertController (
                         title:"Station Name Exists",
@@ -115,10 +113,21 @@ class CreateNodeViewController:  UIViewController, UICollectionViewDataSource, U
                         title:"OK",
                         style:.default))
                     present(alert, animated:true, completion:nil)
+                    
                 }
+                
+            } else {
+                var alert = UIAlertController (
+                   title:"Station Name is Empty",
+                   message:"Please enter a Station Name",
+                   preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(
+                   title:"OK",
+                   style:.default))
+                present(alert, animated:true, completion:nil)
             }
         }
-        
     }
     @IBOutlet weak var metroLineSelectionView: UICollectionView! {
         didSet {

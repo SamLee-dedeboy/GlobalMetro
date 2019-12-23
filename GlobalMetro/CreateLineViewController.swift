@@ -84,12 +84,25 @@ class CreateLineViewController: UIViewController, UIPopoverPresentationControlle
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let mapvc = self.presentationController?.delegate as? MapViewController {
             if let lineName =  lineNameTextField.text {
-                mapvc.createLine(lineName, self.chosenColor)
+                if mapvc.checkLineName(lineName) {
+                    mapvc.createLine(lineName, self.chosenColor)
+                    self.presentingViewController?.dismiss(animated: true)
+
+                } else {
+                    var alert = UIAlertController (
+                        title:"MetroLine Name Exists",
+                        message:"Please enter another MetroLine Name",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(
+                        title:"OK",
+                        style:.default))
+                    present(alert, animated:true, completion:nil)
+                }
             }
         } else {
             print("VC casting failed: \(self.presentationController?.delegate)")
         }
-        self.presentingViewController?.dismiss(animated: true)
     }
     @IBAction func chooseColorButtonPressed(_ sender: UIButton) {
         showColorPicker(sender)
